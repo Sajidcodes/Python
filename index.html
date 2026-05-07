@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIS 108 — Final Exam Review Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Crimson+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #F7F3EA;
+    --paper-soft:   #FBF8F0;
+    --paper-deep:   #EDE5D2;
+    --ink:          #1F1A12;
+    --ink-soft:     #4A4032;
+    --ink-faint:    #786A52;
+    --rule:         #D4C9B0;
+    --rule-soft:    #E5DCC4;
+    --brick:        #8B2C2C;
+    --brick-soft:   #C97A6B;
+    --teal:         #2C5F5D;
+    --teal-soft:    #6FA09D;
+    --gold:         #B07D2C;
+    --moss:         #5C7A3F;
+    --code-bg:      #FFFCF3;
+    --code-border:  #E5DCC4;
+    --hint-bg:      #FCF4E0;
+    --warn-bg:      #FBE8E0;
+    --calm-bg:      #E8EFEC;
+    --good-bg:      #E8EEDD;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(176,125,44,0.04), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(44,95,93,0.04), transparent 40%),
+      var(--paper);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.65;
+    font-feature-settings: "onum", "kern", "liga";
+  }
+
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.25rem; }
+    .toc-wrap { position: static !important; max-height: none !important; overflow: visible !important; }
+  }
+
+  /* ----- TOC ----- */
+  .toc-wrap {
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--rule-soft);
+  }
+  .toc-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin: 0 0 0.85rem 0;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  .toc-list li { margin-bottom: 0.4rem; }
+  .toc-list a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.6rem;
+    display: block;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc-list a:hover {
+    color: var(--brick);
+    border-left-color: var(--brick);
+  }
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-right: 0.4rem;
+  }
+
+  /* ----- Main ----- */
+  main { min-width: 0; }
+
+  /* ----- Header ----- */
+  header.top {
+    border-bottom: 2px double var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brick);
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  /* ----- Headings ----- */
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 3rem 0 0.4rem 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    font-variation-settings: "SOFT" 30;
+  }
+  h2 .module-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--brick);
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--brick);
+    margin-top: 0.75rem;
+  }
+  h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin: 2rem 0 0.5rem 0;
+    color: var(--ink);
+  }
+  h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    margin: 1.25rem 0 0.4rem 0;
+    color: var(--ink-soft);
+    text-transform: none;
+  }
+
+  p { margin: 0.6rem 0 0.9rem 0; }
+  ul, ol { margin: 0.5rem 0 1rem 0; padding-left: 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+
+  strong { color: var(--ink); font-weight: 600; }
+  em { color: var(--ink-soft); }
+
+  /* ----- Code ----- */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    border: 1px solid var(--code-border);
+    color: var(--ink);
+  }
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-left: 3px solid var(--teal);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0.75rem 0;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+  /* simple syntax tinting using spans */
+  .kw  { color: var(--brick); font-weight: 500; }
+  .str { color: var(--moss); }
+  .num { color: var(--gold); }
+  .com { color: var(--ink-faint); font-style: italic; }
+  .fn  { color: var(--teal); }
+
+  /* ----- Callouts ----- */
+  .callout {
+    margin: 1.25rem 0;
+    padding: 1rem 1.15rem 1rem 1.25rem;
+    border-radius: 4px;
+    border-left: 4px solid var(--ink-faint);
+    background: var(--paper-soft);
+    position: relative;
+  }
+  .callout > .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+
+  .mental    { background: var(--calm-bg); border-left-color: var(--teal); }
+  .mental .label { color: var(--teal); }
+
+  .pitfall   { background: var(--warn-bg); border-left-color: var(--brick); }
+  .pitfall .label { color: var(--brick); }
+
+  .hint      { background: var(--hint-bg); border-left-color: var(--gold); }
+  .hint .label { color: var(--gold); }
+
+  .win       { background: var(--good-bg); border-left-color: var(--moss); }
+  .win .label { color: var(--moss); }
+
+  /* ----- Quiz / details ----- */
+  .quiz {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.15rem;
+    margin: 1.25rem 0;
+    background: var(--paper-soft);
+  }
+  .quiz-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--brick);
+    margin: 0 0 0.6rem 0;
+  }
+  details {
+    margin: 0.6rem 0;
+    border-top: 1px dashed var(--rule);
+    padding-top: 0.5rem;
+  }
+  details:first-of-type { border-top: none; padding-top: 0; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+    padding: 0.2rem 0;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before {
+    content: "▸ ";
+    color: var(--brick);
+    display: inline-block;
+    transition: transform 0.15s;
+    margin-right: 0.2rem;
+  }
+  details[open] > summary::before { content: "▾ "; }
+  .answer {
+    margin-top: 0.4rem;
+    padding: 0.6rem 0.85rem;
+    background: var(--good-bg);
+    border-left: 3px solid var(--moss);
+    border-radius: 3px;
+    font-size: 0.97rem;
+  }
+  .answer strong { color: var(--moss); }
+
+  /* ----- Tables (trace tables) ----- */
+  table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+  }
+  th, td {
+    border: 1px solid var(--rule);
+    padding: 0.45rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: var(--paper-deep);
+    color: var(--ink);
+    font-weight: 600;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 0.92rem;
+  }
+  td.empty { color: var(--ink-faint); }
+
+  /* ----- Bloom badges ----- */
+  .bloom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.85rem;
+    margin: 1.25rem 0;
+  }
+  .bloom-card {
+    background: var(--paper-soft);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    border-top: 3px solid var(--teal);
+  }
+  .bloom-card.l1 { border-top-color: #5C7A3F; }
+  .bloom-card.l2 { border-top-color: #2C5F5D; }
+  .bloom-card.l3 { border-top-color: #B07D2C; }
+  .bloom-card.l4 { border-top-color: #8B2C2C; }
+  .bloom-card.l5 { border-top-color: #6B3F7A; }
+  .bloom-card.l6 { border-top-color: #1F1A12; }
+  .bloom-level {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.3rem;
+  }
+  .bloom-card p { margin: 0.3rem 0; font-size: 0.96rem; line-height: 1.5; }
+  .bloom-q { font-weight: 600; color: var(--ink); }
+
+  /* ----- Misc ----- */
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule-soft);
+    margin: 2rem 0;
+  }
+  .ornament {
+    text-align: center;
+    color: var(--brick);
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    letter-spacing: 0.5em;
+  }
+  .lead {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82em;
+    background: var(--paper-deep);
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--rule);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+  }
+
+  /* ----- footer ----- */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 2px double var(--rule);
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================ -->
+<!-- TABLE OF CONTENTS                                            -->
+<!-- ============================================================ -->
+<aside class="toc-wrap">
+  <p class="toc-title">Contents</p>
+  <ul class="toc-list">
+    <li><a href="#welcome"><span class="toc-num">00</span>How to use this guide</a></li>
+    <li><a href="#mod1"><span class="toc-num">01</span>Lists</a></li>
+    <li><a href="#mod2"><span class="toc-num">02</span>Types &amp; the quote trap</a></li>
+    <li><a href="#mod3"><span class="toc-num">03</span>Lists vs Sets</a></li>
+    <li><a href="#mod4"><span class="toc-num">04</span>Tracing variables</a></li>
+    <li><a href="#mod5"><span class="toc-num">05</span>If / Else</a></li>
+    <li><a href="#mod6"><span class="toc-num">06</span>and / or / not</a></li>
+    <li><a href="#mod7"><span class="toc-num">07</span>Loops</a></li>
+    <li><a href="#mod8"><span class="toc-num">08</span>Nested if / elif</a></li>
+    <li><a href="#mod9"><span class="toc-num">09</span>Functions &amp; while</a></li>
+    <li><a href="#mod10"><span class="toc-num">10</span>Debugging mindset</a></li>
+    <li><a href="#practice"><span class="toc-num">11</span>Practice exam</a></li>
+    <li><a href="#cheat"><span class="toc-num">12</span>Cheat sheet</a></li>
+  </ul>
+</aside>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                         -->
+<!-- ============================================================ -->
+<main>
+
+<header class="top">
+  <p class="eyebrow">CIS 108 · Final Exam Review · Spring 2026</p>
+  <h1>The Calm, Confident Guide<br>to Your Python Final</h1>
+  <p class="subtitle">Trace, don't memorize. Read the code the computer actually runs — not the one you wish it ran.</p>
+</header>
+
+<!-- ============================================================ -->
+<!-- 00 WELCOME                                                   -->
+<!-- ============================================================ -->
+<section id="welcome">
+<h2><span class="module-num">MODULE 00</span>How to use this guide</h2>
+
+<p class="lead">If you can <em>trace</em> code by hand on paper — variable by variable, line by line — you can pass this exam. This guide builds that one skill across ten modules.</p>
+
+<h3>The deal</h3>
+<p>Every module follows the same rhythm: a <strong>concept</strong> in plain words, a <strong>mental model</strong> you can keep in your head, <strong>worked examples</strong>, a <strong>Bloom's ladder</strong> of questions from easy to hard, and an <strong>instant quiz</strong> with hidden answers so you can self-test honestly. None of the questions here are taken from the final — these are <em>fresh</em> examples that teach the same skills.</p>
+
+<h3>What's a Bloom's ladder, and why care?</h3>
+<p>"Knowing Python" isn't one skill. There are six levels of knowing:</p>
+
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Level 1 · Remember</div><p>Recall a fact. <em>"What does <code>len()</code> do?"</em></p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Level 2 · Understand</div><p>Explain it. <em>"Why does indexing start at 0?"</em></p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Level 3 · Apply</div><p>Use it on a new problem. <em>"What does <code>x[2]</code> return here?"</em></p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Level 4 · Analyze</div><p>Take it apart. <em>"Why is the loop running 4 times instead of 3?"</em></p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Level 5 · Evaluate</div><p>Judge it. <em>"Which version of this code is clearer, and why?"</em></p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Level 6 · Create</div><p>Build something new. <em>"Write a function that…"</em></p></div>
+</div>
+
+<p>Multiple-choice and "what's the output?" questions live mostly in Levels 1–4. Debugging questions live in Levels 4–6. Every module here gives you practice at every level.</p>
+
+<div class="callout mental">
+  <span class="label">★ The one habit that beats everything</span>
+  <p><strong>Trace by hand.</strong> Take a pen, write down every variable, and update its value as you read each line. The computer doesn't run code in your head — it runs each line, one at a time, in order. Your job on this exam is to <em>be</em> the computer for two minutes at a time.</p>
+</div>
+
+<h3>The trace table — your secret weapon</h3>
+<p>For any code that changes variables, draw a table: one column per variable, one row per line of code. After each line, write the new value (or repeat the old one if it didn't change). At the end, the answer is sitting in front of you.</p>
+
+<pre><code><span class="com"># Code:</span>
+a = <span class="num">3</span>
+b = <span class="num">5</span>
+a = a + <span class="num">1</span>
+b = a * <span class="num">2</span></code></pre>
+
+<table>
+<tr><th>Line</th><th>a</th><th>b</th></tr>
+<tr><td>a = 3</td><td>3</td><td class="empty">—</td></tr>
+<tr><td>b = 5</td><td>3</td><td>5</td></tr>
+<tr><td>a = a + 1</td><td>4</td><td>5</td></tr>
+<tr><td>b = a * 2</td><td>4</td><td>8</td></tr>
+</table>
+
+<p>Final answer: <code>a</code> is <code>4</code>, <code>b</code> is <code>8</code>. No guessing, no panic. Just bookkeeping.</p>
+
+<div class="callout hint">
+  <span class="label">→ Study order</span>
+  <p>Go in order on your first pass — each module builds on the last. On your second pass, jump to the modules that felt shakiest. Aim for two full passes before exam day.</p>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 01 LISTS                                                      -->
+<!-- ============================================================ -->
+<section id="mod1">
+<h2><span class="module-num">MODULE 01</span>Lists — storing many things in order</h2>
+
+<p class="lead">A list is Python's way of putting many values in a single named container, in a specific order, so you can grab any one of them by its position number.</p>
+
+<h3>The concept in one sentence</h3>
+<p>A <strong>list</strong> is an ordered collection of items, written inside square brackets <code>[ ]</code>, with items separated by commas.</p>
+
+<pre><code>groceries = [<span class="str">"milk"</span>, <span class="str">"bread"</span>, <span class="str">"eggs"</span>, <span class="str">"apples"</span>]</code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p>Picture an apartment building. Each floor holds one item. The <strong>ground floor is floor 0</strong>, not floor 1. So the first item lives at index <code>0</code>, the second at <code>1</code>, and so on. This is called <strong>zero-based indexing</strong> and it's true everywhere in Python.</p>
+</div>
+
+<h3>The four things you must know about lists</h3>
+
+<h4>1 · Items can be any type — including different types in the same list</h4>
+<pre><code>pet = [<span class="str">"Rex"</span>, <span class="num">3</span>, <span class="str">"dog"</span>, <span class="kw">True</span>]
+<span class="com"># Index:    0     1      2      3</span>
+<span class="com"># Type:    str   int    str    bool</span></code></pre>
+
+<h4>2 · <code>len()</code> returns the count of items</h4>
+<pre><code><span class="fn">len</span>(groceries)   <span class="com"># → 4</span>
+<span class="fn">len</span>(pet)         <span class="com"># → 4</span>
+<span class="fn">len</span>([])          <span class="com"># → 0  (an empty list)</span></code></pre>
+
+<h4>3 · Indexing grabs one item by position</h4>
+<pre><code>pet[<span class="num">0</span>]    <span class="com"># → "Rex"</span>
+pet[<span class="num">2</span>]    <span class="com"># → "dog"</span>
+pet[-<span class="num">1</span>]   <span class="com"># → True   (negative indices count from the end)</span>
+pet[-<span class="num">2</span>]   <span class="com"># → "dog"</span></code></pre>
+
+<h4>4 · Lists can hold other lists (nesting)</h4>
+<pre><code>matrix = [[<span class="num">1</span>, <span class="num">2</span>], [<span class="num">3</span>, <span class="num">4</span>], [<span class="num">5</span>, <span class="num">6</span>]]
+<span class="fn">len</span>(matrix)      <span class="com"># → 3   (three inner lists, each counted as ONE item)</span>
+matrix[<span class="num">0</span>]       <span class="com"># → [1, 2]</span>
+matrix[<span class="num">0</span>][<span class="num">1</span>]    <span class="com"># → 2   (first list, then position 1 inside it)</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Most common pitfall</span>
+  <p>Confusing <strong>length</strong> (the count) with the <strong>last valid index</strong> (count minus one). A list of 4 items has length <code>4</code>, but its highest index is <code>3</code>. Trying <code>my_list[4]</code> on that list raises <code>IndexError: list index out of range</code>.</p>
+</div>
+
+<h3>Bloom's ladder — Lists</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">What function gives you the number of items in a list?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Why does <code>len(["a","b","c"])</code> return 3, but the largest valid index is 2?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">Given <code>colors = ["red","green","blue","yellow"]</code>, what is <code>colors[-2]</code>?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">Why does <code>len([[1,2,3],[4,5,6]])</code> return 2 instead of 6?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A teammate stores a student's info as <code>["Sara", 21, "CS"]</code>. Another stores it as three separate lists: names, ages, majors. Which is easier to keep correct as the data grows? Why?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write one list that represents a single book, including its title (str), year (int), price (float), and whether it's in stock (bool).</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Lists</p>
+
+<details><summary>1. <code>len(["sun","moon","stars"])</code> equals what?</summary>
+<div class="answer"><strong>3.</strong> Three items, so length is 3.</div></details>
+
+<details><summary>2. Given <code>menu = ["pizza", "pasta", "salad", "soup"]</code>, what is <code>menu[2]</code>?</summary>
+<div class="answer"><strong>"salad".</strong> Counting from 0: pizza→0, pasta→1, salad→2.</div></details>
+
+<details><summary>3. What is <code>menu[-1]</code> for the list above?</summary>
+<div class="answer"><strong>"soup".</strong> <code>-1</code> is always the last item, no matter how long the list is.</div></details>
+
+<details><summary>4. What is <code>len([10, 20, [30, 40, 50]])</code>?</summary>
+<div class="answer"><strong>3.</strong> Two numbers and one inner list — three items total. The inner list counts as a single item even though it contains three numbers.</div></details>
+
+<details><summary>5. In <code>data = [True, "yes", 1, 1.0]</code>, what is the <em>type</em> of <code>data[3]</code>?</summary>
+<div class="answer"><strong><code>float</code>.</strong> The dot in <code>1.0</code> makes it a float, not an int.</div></details>
+
+<details><summary>6. In the same list, what is the index of <code>"yes"</code>?</summary>
+<div class="answer"><strong>1.</strong> True is at 0, "yes" is at 1.</div></details>
+
+<details><summary>7. If <code>x = [5, 10, 15]</code>, what error do you get from <code>x[3]</code>?</summary>
+<div class="answer"><strong><code>IndexError: list index out of range</code>.</strong> The list has length 3, so valid indices are 0, 1, 2. Index 3 doesn't exist.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 02 TYPES                                                      -->
+<!-- ============================================================ -->
+<section id="mod2">
+<h2><span class="module-num">MODULE 02</span>Data types &amp; the quotation-mark trap</h2>
+
+<p class="lead">Every value in Python has a <strong>type</strong>. The type tells Python how that value behaves — what you can do with it, and what happens when you try.</p>
+
+<h3>The five types you must recognize on sight</h3>
+
+<table>
+<tr><th>Type</th><th>What it is</th><th>Examples</th></tr>
+<tr><td><code>int</code></td><td>whole number</td><td><code>0</code>, <code>42</code>, <code>-7</code></td></tr>
+<tr><td><code>float</code></td><td>number with a decimal point</td><td><code>3.14</code>, <code>0.0</code>, <code>-2.5</code></td></tr>
+<tr><td><code>str</code></td><td>text in quotes</td><td><code>"hello"</code>, <code>'7'</code>, <code>"True"</code></td></tr>
+<tr><td><code>bool</code></td><td>only two values, no quotes, capital letter</td><td><code>True</code>, <code>False</code></td></tr>
+<tr><td><code>list</code></td><td>ordered collection in <code>[ ]</code></td><td><code>[1, 2]</code>, <code>["a"]</code>, <code>[]</code></td></tr>
+</table>
+
+<h3>The <code>type()</code> function tells you which one</h3>
+<pre><code><span class="fn">type</span>(<span class="num">42</span>)         <span class="com"># → &lt;class 'int'&gt;</span>
+<span class="fn">type</span>(<span class="num">3.0</span>)        <span class="com"># → &lt;class 'float'&gt;   ← the dot makes it a float</span>
+<span class="fn">type</span>(<span class="str">"42"</span>)       <span class="com"># → &lt;class 'str'&gt;     ← quotes make it a string</span>
+<span class="fn">type</span>(<span class="kw">True</span>)       <span class="com"># → &lt;class 'bool'&gt;</span>
+<span class="fn">type</span>([<span class="num">1</span>,<span class="num">2</span>])      <span class="com"># → &lt;class 'list'&gt;</span></code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model — the quotation-mark switch</span>
+  <p>Quotation marks turn anything into a string. <code>7</code> is the number seven. <code>"7"</code> is a one-character string — a piece of text that happens to look like a digit. They look identical on screen but Python treats them as totally different things, like the difference between an actual cat and the word "cat".</p>
+</div>
+
+<h3>The two famous traps</h3>
+
+<h4>Trap 1 · <code>True</code> versus <code>"True"</code></h4>
+<p><code>True</code> (no quotes, capital T) is the boolean value true — one of only two boolean values in the language.<br>
+<code>"True"</code> (with quotes) is a four-character string: T, r, u, e. It happens to spell out "True" but Python doesn't care about its meaning; it's just text.</p>
+
+<pre><code><span class="kw">True</span> == <span class="str">"True"</span>     <span class="com"># → False  (boolean is not equal to a string)</span>
+<span class="fn">type</span>(<span class="kw">True</span>)         <span class="com"># → bool</span>
+<span class="fn">type</span>(<span class="str">"True"</span>)       <span class="com"># → str</span></code></pre>
+
+<p>This matters: <code>if user_logged_in == "True":</code> will never be true if <code>user_logged_in</code> is the boolean <code>True</code>. Mixing them up is a silent bug — no error message, just the wrong behavior.</p>
+
+<h4>Trap 2 · <code>5</code> versus <code>"5"</code></h4>
+<pre><code><span class="num">5</span> + <span class="num">3</span>          <span class="com"># → 8       (numbers add)</span>
+<span class="str">"5"</span> + <span class="str">"3"</span>      <span class="com"># → "53"    (strings concatenate — glue together)</span>
+<span class="num">5</span> + <span class="str">"3"</span>        <span class="com"># → TypeError: unsupported operand type(s)</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Why this matters on the exam</span>
+  <p>Whenever you see a value in code, <em>identify its type first</em>. Half the "what's the output?" questions hinge on whether something is a string or a number. The presence or absence of quotation marks is not decoration — it is the answer.</p>
+</div>
+
+<h3>Bloom's ladder — Types</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">Name the five basic types covered in this module.</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">In your own words, what is the difference between <code>7</code> and <code>"7"</code>?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">What is the type of each item in <code>data = [0, 0.0, "0", False, [0]]</code>?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">Why does <code>"5" + "3"</code> produce <code>"53"</code> while <code>5 + 3</code> produces <code>8</code>?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A coworker stores a person's age as <code>"21"</code>. Why is this risky? What might break later?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write three lines that store the same idea (the number five) as an int, a float, and a str.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Types</p>
+
+<details><summary>1. <code>type(False)</code> is what?</summary>
+<div class="answer"><strong><code>bool</code>.</strong> True and False are the only two booleans.</div></details>
+
+<details><summary>2. Is <code>True == "True"</code> true or false?</summary>
+<div class="answer"><strong>False.</strong> A boolean and a string are different types and are never equal, even when they look the same.</div></details>
+
+<details><summary>3. Is <code>5 == "5"</code> true or false?</summary>
+<div class="answer"><strong>False.</strong> An int and a string are never equal in Python.</div></details>
+
+<details><summary>4. <code>type(3.0)</code> is what?</summary>
+<div class="answer"><strong><code>float</code>.</strong> The decimal point makes it a float, even though the value is a whole number.</div></details>
+
+<details><summary>5. What is <code>"10" + "20"</code>?</summary>
+<div class="answer"><strong><code>"20"</code>? No — it's <code>"1020"</code>.</strong> The <code>+</code> operator on strings glues them end to end (concatenation), it doesn't add them as numbers.</div></details>
+
+<details><summary>6. What is <code>type("True")</code>?</summary>
+<div class="answer"><strong><code>str</code>.</strong> Quotes make it a string. The text inside is irrelevant to Python.</div></details>
+
+<details><summary>7. Sketch the type of every item in <code>mix = [10, 10.0, "10", True, [10]]</code>.</summary>
+<div class="answer"><strong>int, float, str, bool, list.</strong> Five values, five different types.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 03 LISTS vs SETS                                              -->
+<!-- ============================================================ -->
+<section id="mod3">
+<h2><span class="module-num">MODULE 03</span>Lists vs Sets — order &amp; duplicates</h2>
+
+<p class="lead">A list and a set both hold many items. They differ on two questions: <strong>does the order matter?</strong> and <strong>are duplicates allowed?</strong></p>
+
+<h3>The two-line difference</h3>
+<table>
+<tr><th></th><th>List</th><th>Set</th></tr>
+<tr><td>Written with</td><td><code>[ ]</code></td><td><code>{ }</code></td></tr>
+<tr><td>Order kept?</td><td>Yes</td><td>No</td></tr>
+<tr><td>Duplicates?</td><td>Allowed</td><td>Removed automatically</td></tr>
+<tr><td>Use it when…</td><td>position matters or repeats matter</td><td>you only care about <em>which unique items appeared</em></td></tr>
+</table>
+
+<h3>Worked example</h3>
+<pre><code>votes = [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>, <span class="str">"Alice"</span>, <span class="str">"Carol"</span>, <span class="str">"Bob"</span>, <span class="str">"Alice"</span>]
+
+<span class="fn">print</span>(<span class="fn">list</span>(votes))
+<span class="com"># → ['Alice', 'Bob', 'Alice', 'Carol', 'Bob', 'Alice']
+# Same six values in the same order — list keeps everything.</span>
+
+<span class="fn">print</span>(<span class="fn">set</span>(votes))
+<span class="com"># → {'Alice', 'Bob', 'Carol'}
+# Only the three unique names. Order may print differently each run.</span></code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p>A list is a <strong>queue at the deli counter</strong> — order matters and the same person can take a number twice. A set is the <strong>guest list at the door</strong> — only names matter, and writing a name twice doesn't double-count anyone.</p>
+</div>
+
+<h3>The classic exam pattern</h3>
+<p>Any time you see a list with repeats being passed to <code>set()</code>, the answer involves <strong>only the unique items</strong>. Any time it's passed to <code>list()</code>, the result is unchanged.</p>
+
+<pre><code>nums = [<span class="num">1</span>, <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">3</span>, <span class="num">3</span>]
+<span class="fn">list</span>(nums)   <span class="com"># → [1, 1, 2, 3, 3, 3]   (no change)</span>
+<span class="fn">set</span>(nums)    <span class="com"># → {1, 2, 3}            (duplicates gone)</span>
+<span class="fn">len</span>(<span class="fn">set</span>(nums))   <span class="com"># → 3                    (count of unique values)</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Two things that surprise students</span>
+  <ul>
+    <li>Sets print with curly braces <code>{ }</code> — easy to confuse with a Python <em>dictionary</em>, which also uses <code>{ }</code> but has key-value pairs separated by colons.</li>
+    <li>The <strong>order of items</strong> in a printed set can vary. Don't lose points trying to memorize which order — focus on <em>which items</em> appear and <em>how many</em>.</li>
+  </ul>
+</div>
+
+<h3>Bloom's ladder — Sets</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">Which brackets does a set use?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">What are the two main differences between a list and a set?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">What does <code>set([4, 4, 5, 6, 6, 7])</code> contain?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">If <code>len(my_list)</code> is 10 and <code>len(set(my_list))</code> is 7, what does that tell you?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">For tracking which songs were played at a party, would a list or a set be a better fit, and why?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Show two lines of code that, given any list of student names with possible repeats, prints how many unique students appeared.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Lists vs Sets</p>
+
+<details><summary>1. What is <code>set([1, 2, 2, 3, 3, 3])</code>?</summary>
+<div class="answer"><strong><code>{1, 2, 3}</code>.</strong> Duplicates removed.</div></details>
+
+<details><summary>2. What is <code>list([1, 2, 2, 3, 3, 3])</code>?</summary>
+<div class="answer"><strong><code>[1, 2, 2, 3, 3, 3]</code>.</strong> Lists keep duplicates and order.</div></details>
+
+<details><summary>3. What is <code>len(set("hello"))</code>?</summary>
+<div class="answer"><strong>4.</strong> The unique characters are h, e, l, o — four of them. The repeated 'l' is dropped.</div></details>
+
+<details><summary>4. If <code>scores = [80, 90, 80, 70, 90, 80]</code>, what does <code>len(set(scores))</code> return?</summary>
+<div class="answer"><strong>3.</strong> Three unique scores: 80, 90, 70.</div></details>
+
+<details><summary>5. True or False: the set <code>{3, 1, 2}</code> always prints in the order 3, 1, 2.</summary>
+<div class="answer"><strong>False.</strong> Set order is not guaranteed and can vary.</div></details>
+
+<details><summary>6. Given <code>names = ["Mia","Ravi","Mia","Sam","Ravi","Mia"]</code>, write the value of <code>set(names)</code>.</summary>
+<div class="answer"><strong><code>{"Mia", "Ravi", "Sam"}</code></strong> — three unique names. Order may vary on screen.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 04 TRACING VARIABLES                                          -->
+<!-- ============================================================ -->
+<section id="mod4">
+<h2><span class="module-num">MODULE 04</span>Tracing variables — statements vs expressions</h2>
+
+<p class="lead">This is the single most exam-relevant skill in the course. If you master this module, you will pick up easy points everywhere else.</p>
+
+<h3>The two kinds of lines you'll see</h3>
+<p>Most lines of code fall into one of two camps:</p>
+<ol>
+  <li><strong>A statement that <em>changes</em> something</strong> — usually contains an equals sign. Example: <code>x = 10</code>, <code>x = x + 1</code>.</li>
+  <li><strong>An expression that just <em>computes a value</em> and throws it away</strong> — no equals sign on the outside. Example: <code>x + 5</code>, <code>x + y</code>.</li>
+</ol>
+
+<div class="callout mental">
+  <span class="label">★ Mental model — the silent calculation</span>
+  <p>An expression by itself is like solving a math problem on a whiteboard, then erasing it without writing the answer down. The calculation happened, but nothing was saved. The variables involved are <em>not</em> updated. The next time you read them, they still have their old values.</p>
+</div>
+
+<h3>Worked example — read this slowly</h3>
+<pre><code>balance = <span class="num">100</span>
+deposit = <span class="num">25</span>
+balance + deposit       <span class="com"># computes 125, but does NOTHING with it</span>
+<span class="fn">print</span>(balance)          <span class="com"># prints 100, NOT 125</span></code></pre>
+
+<p>Now compare:</p>
+<pre><code>balance = <span class="num">100</span>
+deposit = <span class="num">25</span>
+balance = balance + deposit   <span class="com"># NOW balance is updated to 125</span>
+<span class="fn">print</span>(balance)                <span class="com"># prints 125</span></code></pre>
+
+<p>The only difference is the <code>balance =</code> on the left. Without it, the computation is wasted.</p>
+
+<h3>The trace-table walkthrough — a step-by-step example</h3>
+<p>Read this code and trace what happens after each line. Don't peek at the table.</p>
+<pre><code>p = <span class="num">5</span>
+q = <span class="num">8</span>
+r = p + q
+p + <span class="num">2</span>
+p + q
+q = q + <span class="num">3</span>
+r
+p + q</code></pre>
+
+<table>
+<tr><th>Line</th><th>p</th><th>q</th><th>r</th><th>What expression evaluates to (if no =)</th></tr>
+<tr><td>p = 5</td><td>5</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td></tr>
+<tr><td>q = 8</td><td>5</td><td>8</td><td class="empty">—</td><td class="empty">—</td></tr>
+<tr><td>r = p + q</td><td>5</td><td>8</td><td>13</td><td class="empty">—</td></tr>
+<tr><td>p + 2</td><td>5</td><td>8</td><td>13</td><td>7 (thrown away)</td></tr>
+<tr><td>p + q</td><td>5</td><td>8</td><td>13</td><td>13 (thrown away)</td></tr>
+<tr><td>q = q + 3</td><td>5</td><td>11</td><td>13</td><td class="empty">—</td></tr>
+<tr><td>r</td><td>5</td><td>11</td><td>13</td><td>13 (thrown away)</td></tr>
+<tr><td>p + q</td><td>5</td><td>11</td><td>13</td><td>16 (thrown away)</td></tr>
+</table>
+
+<div class="callout hint">
+  <span class="label">→ The exam pattern</span>
+  <p>Exam questions like "<em>after these lines, what is the value of X?</em>" reward exactly this skill. Read each line, ask "does this have an <code>=</code> on the outside?" — if yes, update the variable. If no, just compute the value and discard it.</p>
+</div>
+
+<h3>The order trap — re-reading variables</h3>
+<p>When you see <code>x = x + 1</code>, Python reads the <em>right side first</em>, computes the new value, and <em>then</em> stores it on the left. So if <code>x</code> was 5, the right side computes <code>5 + 1 = 6</code>, and <code>x</code> becomes 6.</p>
+<pre><code>x = <span class="num">10</span>
+y = x        <span class="com"># y becomes 10. y is now its own variable.</span>
+x = <span class="num">99</span>       <span class="com"># changing x does NOT affect y.</span>
+<span class="fn">print</span>(y)     <span class="com"># still 10.</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Watch for…</span>
+  <ul>
+    <li>An expression with no <code>=</code> sitting on its own line — it does nothing visible to the variables.</li>
+    <li>Self-referential assignments like <code>x = x + 1</code> — always evaluate the right side using the <em>current</em> values, then assign.</li>
+    <li>Re-assigning one variable doesn't reach back and change others that were copied earlier.</li>
+  </ul>
+</div>
+
+<h3>Bloom's ladder — Tracing</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">What symbol on the outside of a line tells Python to <em>store</em> a value?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Why does <code>x + 1</code> on its own line not change <code>x</code>?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">After <code>a = 4; a = a + 6; a + 2</code>, what is <code>a</code>?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">In <code>a = 5; b = a; a = 99</code>, why does <code>b</code> stay 5?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A student writes <code>total + score</code> in their loop and wonders why <code>total</code> never grows. What did they forget?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write a 5-line program where two of the lines are expressions that do nothing, and explain in a comment what the final values are.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Tracing</p>
+
+<details><summary>1. After <code>a = 7</code> then <code>a + 3</code>, what is <code>a</code>?</summary>
+<div class="answer"><strong>Still 7.</strong> The expression <code>a + 3</code> computes 10 but is not stored anywhere.</div></details>
+
+<details><summary>2. After <code>a = 7; a = a + 3</code>, what is <code>a</code>?</summary>
+<div class="answer"><strong>10.</strong> The right side evaluates to 10, then 10 is stored back into <code>a</code>.</div></details>
+
+<details><summary>3. Trace this:<br><code>m = 4<br>n = m * 2<br>m = m + 1<br>n + m</code><br>What are the final values of <code>m</code> and <code>n</code>?</summary>
+<div class="answer"><strong><code>m = 5</code> and <code>n = 8</code>.</strong> When <code>n = m * 2</code> runs, <code>m</code> is still 4, so <code>n</code> becomes 8. The next line bumps <code>m</code> to 5. The last line <code>n + m</code> computes 13 but is thrown away.</div></details>
+
+<details><summary>4. Trace this:<br><code>a = 2<br>b = a<br>a = 100<br>print(a, b)</code></summary>
+<div class="answer"><strong>Prints <code>100 2</code>.</strong> When <code>b = a</code> ran, <code>a</code> was 2, so <code>b</code> got the value 2. Changing <code>a</code> later doesn't change <code>b</code>.</div></details>
+
+<details><summary>5. Trace:<br><code>x = 1<br>x = x + x<br>x = x + x<br>x = x + x</code><br>Final <code>x</code>?</summary>
+<div class="answer"><strong>8.</strong> 1 → 2 → 4 → 8. Each line doubles it.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 05 IF / ELSE                                                  -->
+<!-- ============================================================ -->
+<section id="mod5">
+<h2><span class="module-num">MODULE 05</span>If / Else — making decisions</h2>
+
+<p class="lead">An <code>if</code> statement lets your program take different paths depending on whether a condition is true. The structure is simple, but indentation is everything.</p>
+
+<h3>The shape</h3>
+<pre><code><span class="kw">if</span> condition:
+    <span class="com"># this runs only when the condition is True</span>
+<span class="kw">else</span>:
+    <span class="com"># this runs only when the condition is False</span></code></pre>
+
+<p>Notice three things:</p>
+<ol>
+  <li>A colon <code>:</code> at the end of the <code>if</code> line and the <code>else</code> line.</li>
+  <li>The lines inside are <strong>indented</strong> (usually 4 spaces). Indentation is how Python knows what's inside the block.</li>
+  <li><code>else</code> has no condition of its own — it catches "anything else."</li>
+</ol>
+
+<h3>The comparison operators</h3>
+<table>
+<tr><th>Operator</th><th>Means</th><th>Example</th><th>Result</th></tr>
+<tr><td><code>==</code></td><td>equal to</td><td><code>5 == 5</code></td><td><code>True</code></td></tr>
+<tr><td><code>!=</code></td><td>not equal</td><td><code>5 != 3</code></td><td><code>True</code></td></tr>
+<tr><td><code>&lt;</code></td><td>less than</td><td><code>3 &lt; 5</code></td><td><code>True</code></td></tr>
+<tr><td><code>&gt;</code></td><td>greater than</td><td><code>3 &gt; 5</code></td><td><code>False</code></td></tr>
+<tr><td><code>&lt;=</code></td><td>less than or equal</td><td><code>5 &lt;= 5</code></td><td><code>True</code></td></tr>
+<tr><td><code>&gt;=</code></td><td>greater than or equal</td><td><code>5 &gt;= 6</code></td><td><code>False</code></td></tr>
+</table>
+
+<div class="callout pitfall">
+  <span class="label">⚠ The single most common bug in beginner code</span>
+  <p>Confusing <code>=</code> with <code>==</code>. <code>=</code> is for <em>storing</em> a value into a variable. <code>==</code> is for <em>comparing</em> two values to ask "are these the same?" Inside an <code>if</code>, you almost always want <code>==</code>.</p>
+</div>
+
+<h3>Worked example</h3>
+<pre><code>score = <span class="num">75</span>
+<span class="kw">if</span> score &gt;= <span class="num">60</span>:
+    <span class="fn">print</span>(<span class="str">"Pass"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Fail"</span>)
+<span class="fn">print</span>(<span class="str">"Done."</span>)</code></pre>
+<p>Output:</p>
+<pre><code>Pass
+Done.</code></pre>
+<p>The <code>print("Done.")</code> line is <strong>not indented</strong> under the <code>if</code> or <code>else</code>, so it runs no matter what.</p>
+
+<h3>The indentation drama</h3>
+<p>Compare these two snippets — only the indentation of the last line is different:</p>
+
+<pre><code><span class="com"># Version A — print is INSIDE the else block</span>
+<span class="kw">if</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="str">"yes"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"no"</span>)
+    <span class="fn">print</span>(<span class="str">"finished"</span>)
+<span class="com"># Output: yes</span></code></pre>
+
+<pre><code><span class="com"># Version B — print is OUTSIDE the else block</span>
+<span class="kw">if</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="str">"yes"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"no"</span>)
+<span class="fn">print</span>(<span class="str">"finished"</span>)
+<span class="com"># Output: yes
+#         finished</span></code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p>Indentation in Python is like the bullet-point hierarchy in an outline. Lines at the same indent level belong to the same block. To know what runs, follow the indent. To know what doesn't, also follow the indent.</p>
+</div>
+
+<h3><code>elif</code> — chaining conditions</h3>
+<p>When you have more than two paths, use <code>elif</code> (short for "else if") between the <code>if</code> and the final <code>else</code>:</p>
+<pre><code>grade = <span class="num">82</span>
+<span class="kw">if</span> grade &gt;= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"A"</span>)
+<span class="kw">elif</span> grade &gt;= <span class="num">80</span>:
+    <span class="fn">print</span>(<span class="str">"B"</span>)
+<span class="kw">elif</span> grade &gt;= <span class="num">70</span>:
+    <span class="fn">print</span>(<span class="str">"C"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"F"</span>)
+<span class="com"># Output: B</span></code></pre>
+
+<div class="callout hint">
+  <span class="label">→ Crucial rule for elif chains</span>
+  <p>Python checks the conditions <strong>in order, top to bottom</strong>, and stops at the first one that is true. Even if a later condition is also true, it will <em>not</em> run. Order matters!</p>
+</div>
+
+<h3>Bloom's ladder — If/Else</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">Which symbol means "equal to" inside an if-condition?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">What's the difference between <code>=</code> and <code>==</code>?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">If <code>x = 7</code>, what does <code>if x &lt; 5: print("A") else: print("B")</code> print?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">In an if/elif/elif/else with grade ranges, why must you check higher grades first?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A friend wrote three independent <code>if</code> statements instead of one if/elif/else chain. When would these behave differently?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write an if/elif/else that takes a temperature and prints "freezing" (≤32°F), "cool" (≤60°F), "warm" (≤80°F), or "hot" (otherwise).</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · If/Else</p>
+
+<details><summary>1. What does this print?<br><code>x = 12<br>if x &gt; 10:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("big")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("small")</code></summary>
+<div class="answer"><strong><code>big</code>.</strong> 12 is greater than 10, so the if-branch runs.</div></details>
+
+<details><summary>2. What does this print?<br><code>n = 5<br>if n == 5:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("five")<br>print("done")</code></summary>
+<div class="answer"><strong><code>five</code> then <code>done</code>.</strong> The print "done" is not indented, so it runs unconditionally.</div></details>
+
+<details><summary>3. What does this print?<br><code>g = 85<br>if g &gt;= 70: print("C")<br>elif g &gt;= 80: print("B")<br>elif g &gt;= 90: print("A")<br>else: print("F")</code></summary>
+<div class="answer"><strong><code>C</code>.</strong> Python checks top to bottom and stops at the first true condition. 85 is ≥ 70, so it prints "C" and skips the rest — even though 85 is also ≥ 80. Order matters!</div></details>
+
+<details><summary>4. What does this print?<br><code>n = 4<br>if n == 5:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("a")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("b")<br>&nbsp;&nbsp;&nbsp;&nbsp;print("c")</code></summary>
+<div class="answer"><strong><code>b</code> then <code>c</code>.</strong> Both <code>print("b")</code> and <code>print("c")</code> are inside the <code>else</code> block (same indent), so both run.</div></details>
+
+<details><summary>5. Spot the bug:<br><code>if x = 5:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("hi")</code></summary>
+<div class="answer"><strong>Should be <code>x == 5</code>.</strong> A single <code>=</code> means assignment and is not allowed inside an <code>if</code>. This raises a <code>SyntaxError</code>.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 06 BOOLEAN OPS                                                -->
+<!-- ============================================================ -->
+<section id="mod6">
+<h2><span class="module-num">MODULE 06</span>and / or / not — combining conditions</h2>
+
+<p class="lead">Sometimes one condition isn't enough. Boolean operators let you combine multiple comparisons into a single yes-or-no question.</p>
+
+<h3>The three operators</h3>
+<table>
+<tr><th>Operator</th><th>Returns True when…</th></tr>
+<tr><td><code>and</code></td><td>BOTH sides are True</td></tr>
+<tr><td><code>or</code></td><td>AT LEAST ONE side is True</td></tr>
+<tr><td><code>not</code></td><td>The single thing on its right is False</td></tr>
+</table>
+
+<h3>Truth tables — the only thing to memorize</h3>
+<table>
+<tr><th>A</th><th>B</th><th>A and B</th><th>A or B</th></tr>
+<tr><td>True</td><td>True</td><td>True</td><td>True</td></tr>
+<tr><td>True</td><td>False</td><td>False</td><td>True</td></tr>
+<tr><td>False</td><td>True</td><td>False</td><td>True</td></tr>
+<tr><td>False</td><td>False</td><td>False</td><td>False</td></tr>
+</table>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p><strong><code>and</code></strong> is <em>strict</em> — it's like a job that needs two signatures. Both must approve. Miss one, the answer is no.<br>
+  <strong><code>or</code></strong> is <em>generous</em> — it's like getting into a park if you have an adult ticket OR a child ticket. Either one gets you in.<br>
+  <strong><code>not</code></strong> just flips True to False and back, like a light switch.</p>
+</div>
+
+<h3>Worked example</h3>
+<pre><code>age = <span class="num">20</span>
+has_id = <span class="kw">True</span>
+
+<span class="kw">if</span> age &gt;= <span class="num">18</span> <span class="kw">and</span> has_id:
+    <span class="fn">print</span>(<span class="str">"Welcome"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Sorry"</span>)
+<span class="com"># Output: Welcome  (both conditions are True)</span></code></pre>
+
+<p>Now change one thing:</p>
+<pre><code>age = <span class="num">20</span>
+has_id = <span class="kw">False</span>
+
+<span class="kw">if</span> age &gt;= <span class="num">18</span> <span class="kw">and</span> has_id:
+    <span class="fn">print</span>(<span class="str">"Welcome"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Sorry"</span>)
+<span class="com"># Output: Sorry  (one side is False, so AND fails)</span></code></pre>
+
+<p>Swap <code>and</code> for <code>or</code>:</p>
+<pre><code>age = <span class="num">20</span>
+has_id = <span class="kw">False</span>
+
+<span class="kw">if</span> age &gt;= <span class="num">18</span> <span class="kw">or</span> has_id:
+    <span class="fn">print</span>(<span class="str">"Welcome"</span>)
+<span class="com"># Output: Welcome  (at least one side is True)</span></code></pre>
+
+<h3>The "or" trap</h3>
+<p>In English, "or" sometimes means "one or the other but not both." In Python, <code>or</code> is true if either side is true <em>or both are</em>. There's no exclusion.</p>
+
+<h3>Combining and/or — read it like math</h3>
+<p>When you mix them, <code>and</code> binds tighter than <code>or</code> (similar to how <code>×</code> binds tighter than <code>+</code> in math). When in doubt, add parentheses.</p>
+<pre><code>a = <span class="kw">True</span>
+b = <span class="kw">False</span>
+c = <span class="kw">True</span>
+
+a <span class="kw">or</span> b <span class="kw">and</span> c
+<span class="com"># Read as: a or (b and c)
+# = True or (False and True)
+# = True or False
+# = True</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Watch for…</span>
+  <ul>
+    <li>Forgetting to repeat the variable: <code>x == 1 or 2</code> does NOT mean "x is 1 or 2." Write <code>x == 1 or x == 2</code>.</li>
+    <li>Using English "and"/"or" instead of lowercase Python keywords. <code>AND</code>, <code>And</code>, and <code>&amp;&amp;</code> are not Python.</li>
+  </ul>
+</div>
+
+<h3>Bloom's ladder — Booleans</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">When does <code>and</code> return True?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">In your own words, how is <code>or</code> different from "or" in everyday English?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">Evaluate: <code>(5 &gt; 3) and (10 == 10)</code>.</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">Why might <code>x == 1 or 2</code> appear to "work" but secretly be wrong?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">For an admission rule "you must be 18+ <em>and</em> have a ticket OR be a member," which Python expression captures it correctly?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write a single condition that is True only when a number <code>n</code> is between 10 and 20 inclusive.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Booleans</p>
+
+<details><summary>1. <code>True and False</code> equals?</summary>
+<div class="answer"><strong>False.</strong> <code>and</code> needs both to be True.</div></details>
+
+<details><summary>2. <code>True or False</code> equals?</summary>
+<div class="answer"><strong>True.</strong> <code>or</code> needs at least one True.</div></details>
+
+<details><summary>3. <code>not True</code> equals?</summary>
+<div class="answer"><strong>False.</strong> <code>not</code> flips it.</div></details>
+
+<details><summary>4. With <code>x = 7</code>, what is <code>x &gt; 5 and x &lt; 10</code>?</summary>
+<div class="answer"><strong>True.</strong> Both conditions hold (7 is greater than 5 AND less than 10).</div></details>
+
+<details><summary>5. With <code>a = 3, b = 3, c = 7</code>, what does this print?<br><code>if a == b or b == c:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("match")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("no match")</code></summary>
+<div class="answer"><strong><code>match</code>.</strong> <code>a == b</code> is True (both 3), so the <code>or</code> short-circuits to True. <code>b == c</code> doesn't even need to be checked.</div></details>
+
+<details><summary>6. With <code>p = 5</code>, what does <code>p == 5 or 0</code> evaluate to?</summary>
+<div class="answer"><strong>True</strong>, but for the wrong reason. Python reads it as <code>(p == 5) or 0</code>, which is <code>True or 0</code>, which is <code>True</code>. This LOOKS like it works, but if you wrote it intending "is p equal to 5 or 0?", you'd be wrong — try <code>p = 0</code> and the same expression returns <code>0</code>, not True.</div></details>
+
+<details><summary>7. Write a condition that's True only when <code>n</code> is between 10 and 20 inclusive.</summary>
+<div class="answer"><strong><code>n &gt;= 10 and n &lt;= 20</code></strong> (or the more Pythonic <code>10 &lt;= n &lt;= 20</code>).</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 07 LOOPS                                                      -->
+<!-- ============================================================ -->
+<section id="mod7">
+<h2><span class="module-num">MODULE 07</span>Loops — doing something many times</h2>
+
+<p class="lead">A <code>for</code> loop walks through a collection of items one at a time and runs the same block of code for each one.</p>
+
+<h3>The shape</h3>
+<pre><code><span class="kw">for</span> variable <span class="kw">in</span> collection:
+    <span class="com"># this block runs once per item
+    # the variable holds the current item</span></code></pre>
+
+<h3>A first example, traced step by step</h3>
+<pre><code><span class="kw">for</span> color <span class="kw">in</span> [<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>]:
+    <span class="fn">print</span>(color)</code></pre>
+<p>Each pass through the loop, <code>color</code> takes on the next item:</p>
+<table>
+<tr><th>Pass</th><th>color is…</th><th>Output line</th></tr>
+<tr><td>1</td><td>"red"</td><td>red</td></tr>
+<tr><td>2</td><td>"green"</td><td>green</td></tr>
+<tr><td>3</td><td>"blue"</td><td>blue</td></tr>
+</table>
+
+<h3>Nested loops — a loop inside a loop</h3>
+<p>For every single pass of the outer loop, the inner loop runs <em>completely</em> from start to finish.</p>
+<pre><code><span class="kw">for</span> fruit <span class="kw">in</span> [<span class="str">"apple"</span>, <span class="str">"pear"</span>]:
+    <span class="kw">for</span> color <span class="kw">in</span> [<span class="str">"red"</span>, <span class="str">"yellow"</span>]:
+        <span class="fn">print</span>(fruit, color)</code></pre>
+
+<p>If the outer list has 2 items and the inner list has 2 items, the print runs <strong>2 × 2 = 4 times</strong>:</p>
+<pre><code>apple red
+apple yellow
+pear  red
+pear  yellow</code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model — odometer</span>
+  <p>Nested loops behave like an odometer in a car. The inner loop is the rightmost wheel — it spins through all its values before the outer wheel clicks forward by one. Outer = slow wheel. Inner = fast wheel.</p>
+</div>
+
+<h3>The big surprise — the loop variable lives on after the loop</h3>
+<p>This catches every student. After a <code>for</code> loop ends, the loop variable still exists, holding the <em>last</em> value it had.</p>
+
+<pre><code><span class="kw">for</span> n <span class="kw">in</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]:
+    <span class="fn">print</span>(<span class="str">"inside:"</span>, n)
+<span class="fn">print</span>(<span class="str">"outside:"</span>, n)
+<span class="com"># Output:
+# inside: 1
+# inside: 2
+# inside: 3
+# outside: 3      ← n is still 3 after the loop ends</span></code></pre>
+
+<p>For nested loops, both the outer and inner variables persist with their last values:</p>
+<pre><code><span class="kw">for</span> i <span class="kw">in</span> [<span class="num">1</span>, <span class="num">2</span>]:
+    <span class="kw">for</span> j <span class="kw">in</span> [<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>]:
+        <span class="fn">pass</span>            <span class="com"># do nothing this round</span>
+<span class="fn">print</span>(i, j)            <span class="com"># prints: 2 9</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ The most-tested trap on this topic</span>
+  <p>Watch the <strong>indentation</strong> of any <code>print</code> after a loop. If it's indented under the loop, it runs every iteration. If it's at the same level as the <code>for</code>, it runs once at the end — and the loop variable now holds the <em>last</em> value from the loop.</p>
+</div>
+
+<h3>Counting how many times a nested loop prints</h3>
+<p>If the outer collection has <code>m</code> items and the inner has <code>n</code> items, the innermost code runs <strong><code>m × n</code></strong> times. Always do the multiplication.</p>
+<pre><code><span class="kw">for</span> a <span class="kw">in</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>]:
+    <span class="kw">for</span> b <span class="kw">in</span> [<span class="num">5</span>, <span class="num">6</span>]:
+        <span class="fn">print</span>(<span class="str">"hi"</span>)
+<span class="com"># prints "hi" exactly 4 × 2 = 8 times</span></code></pre>
+
+<h3><code>range()</code> — making numbers without typing them all</h3>
+<p><code>range(n)</code> produces the numbers 0 up to (but not including) n. So <code>range(4)</code> gives 0, 1, 2, 3.</p>
+<pre><code><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">4</span>):
+    <span class="fn">print</span>(i)
+<span class="com"># Output:
+# 0
+# 1
+# 2
+# 3</span></code></pre>
+
+<h3>Bloom's ladder — Loops</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">What keyword starts a loop that walks through a collection?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Why does the inner loop run completely for every single iteration of the outer loop?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">How many lines does <code>for x in [1,2,3]: for y in [4,5,6]: print(x,y)</code> print?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">After <code>for k in [10, 20, 30]: pass</code>, what is <code>k</code>? Why?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A peer wrote a print statement at the wrong indent level and now sees one line of output instead of nine. What likely happened?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write nested loops that print every possible (rank, suit) pair from <code>ranks = ["A","K","Q"]</code> and <code>suits = ["♥","♦"]</code>.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Loops</p>
+
+<details><summary>1. How many times does this print "hi"?<br><code>for x in [1,2,3]:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("hi")</code></summary>
+<div class="answer"><strong>3 times.</strong> One per item in the list.</div></details>
+
+<details><summary>2. How many times does this print "hi"?<br><code>for x in [1,2,3]:<br>&nbsp;&nbsp;&nbsp;&nbsp;for y in [4,5]:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("hi")</code></summary>
+<div class="answer"><strong>6 times.</strong> 3 × 2.</div></details>
+
+<details><summary>3. After<br><code>for n in [10, 20, 30]:<br>&nbsp;&nbsp;&nbsp;&nbsp;pass</code><br>what is the value of <code>n</code>?</summary>
+<div class="answer"><strong><code>30</code>.</strong> The loop variable persists after the loop, holding the last value it took.</div></details>
+
+<details><summary>4. What does this print?<br><code>for i in [1, 2]:<br>&nbsp;&nbsp;&nbsp;&nbsp;for j in [7, 8]:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(i, j)<br>print("done")</code></summary>
+<div class="answer"><strong>Output:</strong>
+<pre style="margin-top:0.4rem;">1 7
+1 8
+2 7
+2 8
+done</pre>
+The "done" prints once at the end, after the loops finish.</div></details>
+
+<details><summary>5. What does this print?<br><code>for i in [1, 2]:<br>&nbsp;&nbsp;&nbsp;&nbsp;for j in [7, 8]:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(i, j)<br>&nbsp;&nbsp;&nbsp;&nbsp;print("done")</code></summary>
+<div class="answer">Notice the indent change — <code>print("done")</code> is now inside the OUTER loop:
+<pre style="margin-top:0.4rem;">1 7
+1 8
+done
+2 7
+2 8
+done</pre>
+"done" prints once per outer pass.</div></details>
+
+<details><summary>6. <code>range(5)</code> produces which numbers?</summary>
+<div class="answer"><strong>0, 1, 2, 3, 4.</strong> Starts at 0, stops before 5.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 08 NESTED IF                                                  -->
+<!-- ============================================================ -->
+<section id="mod8">
+<h2><span class="module-num">MODULE 08</span>Nested if / elif / else — the indent dance</h2>
+
+<p class="lead">When if-statements live inside other if-statements, indentation tells the whole story. This module is mostly about reading carefully.</p>
+
+<h3>Two crucial rules</h3>
+<ol>
+  <li>An <code>elif</code> or <code>else</code> attaches to the <strong>nearest <code>if</code> at the same indent level above it</strong>.</li>
+  <li>If the matching <code>if</code> was True, all its <code>elif</code> and <code>else</code> branches are <strong>skipped</strong>.</li>
+</ol>
+
+<h3>Worked example — read indentation, not intent</h3>
+<pre><code>n = <span class="num">25</span>
+<span class="kw">if</span> n &gt; <span class="num">10</span>:
+    <span class="fn">print</span>(<span class="str">"A"</span>)
+    <span class="kw">if</span> n &gt; <span class="num">20</span>:
+        <span class="fn">print</span>(<span class="str">"B"</span>)
+    <span class="fn">print</span>(<span class="str">"C"</span>)
+<span class="kw">elif</span> n &gt; <span class="num">5</span>:
+    <span class="fn">print</span>(<span class="str">"D"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"E"</span>)
+<span class="fn">print</span>(<span class="str">"end"</span>)</code></pre>
+
+<p>Walk through it slowly:</p>
+<ol>
+  <li><code>n &gt; 10</code> is True (25 &gt; 10), so we enter the first <code>if</code> block.</li>
+  <li>Print <code>"A"</code>.</li>
+  <li>Check the inner <code>if n &gt; 20</code>. True (25 &gt; 20), so print <code>"B"</code>.</li>
+  <li>Print <code>"C"</code> (still inside the outer <code>if</code> block).</li>
+  <li>The <code>elif</code> and <code>else</code> are <strong>skipped entirely</strong> because the original <code>if</code> was already True.</li>
+  <li>Print <code>"end"</code> (no indentation, runs no matter what).</li>
+</ol>
+
+<p>Output:</p>
+<pre><code>A
+B
+C
+end</code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p>An if/elif/else chain is one decision with multiple options. Pick the FIRST one that matches and skip the rest. A separate, indented inner if-statement is a totally different decision happening inside the chosen branch — and it can have its own elif/else without affecting the outer chain.</p>
+</div>
+
+<h3>The "independent ifs" trap</h3>
+<p>Three separate <code>if</code> statements (no elif) work very differently from a single chain.</p>
+
+<pre><code><span class="com"># Version A — three independent ifs</span>
+score = <span class="num">95</span>
+<span class="kw">if</span> score &gt;= <span class="num">60</span>: <span class="fn">print</span>(<span class="str">"D or higher"</span>)
+<span class="kw">if</span> score &gt;= <span class="num">80</span>: <span class="fn">print</span>(<span class="str">"B or higher"</span>)
+<span class="kw">if</span> score &gt;= <span class="num">90</span>: <span class="fn">print</span>(<span class="str">"A"</span>)
+
+<span class="com"># Output:
+# D or higher
+# B or higher
+# A          ← all three run because they are independent</span></code></pre>
+
+<pre><code><span class="com"># Version B — one if/elif chain</span>
+score = <span class="num">95</span>
+<span class="kw">if</span> score &gt;= <span class="num">60</span>: <span class="fn">print</span>(<span class="str">"D or higher"</span>)
+<span class="kw">elif</span> score &gt;= <span class="num">80</span>: <span class="fn">print</span>(<span class="str">"B or higher"</span>)
+<span class="kw">elif</span> score &gt;= <span class="num">90</span>: <span class="fn">print</span>(<span class="str">"A"</span>)
+
+<span class="com"># Output:
+# D or higher    ← only the first true branch runs</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Watch for…</span>
+  <ul>
+    <li>An <code>else</code> that <em>looks</em> like it should match an outer <code>if</code> but is actually attached to the inner one. Indentation decides — read it like a building floor plan, not like English.</li>
+    <li>Conditions in the wrong order in an elif chain. Putting a wider condition first makes the narrower ones unreachable.</li>
+  </ul>
+</div>
+
+<h3>Bloom's ladder — Nested If</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">What does <code>elif</code> mean?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Why does only one branch in an if/elif/else chain ever run?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">Trace the worked example above with <code>n = 7</code> instead of 25. What prints?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">For the "independent ifs vs chain" example, predict outputs for <code>score = 65</code>, <code>85</code>, and <code>95</code> in both versions.</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">For categorizing exam grades into one letter, which is appropriate: independent ifs or an if/elif/else chain? Why?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write nested ifs that, given a number, print "even &amp; positive", "even &amp; non-positive", "odd &amp; positive", or "odd &amp; non-positive".</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Nested If</p>
+
+<details><summary>1. With <code>n = 7</code>, what does the worked example above print?</summary>
+<div class="answer"><strong>D, then end.</strong> The first <code>if n &gt; 10</code> is False (7 isn't greater than 10), so we fall through to <code>elif n &gt; 5</code>, which is True (7 &gt; 5), so we print "D". The else is skipped. "end" prints unconditionally.</div></details>
+
+<details><summary>2. With <code>n = 3</code>, what does the worked example above print?</summary>
+<div class="answer"><strong>E, then end.</strong> Both the if and elif fail, so the else runs.</div></details>
+
+<details><summary>3. What does this print?<br><code>x = 5<br>if x &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("a")<br>if x &gt; 3:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("b")<br>if x &gt; 10:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("c")</code></summary>
+<div class="answer"><strong><code>a</code> then <code>b</code>.</strong> Three independent ifs: the first two are True, the third is False.</div></details>
+
+<details><summary>4. What does this print?<br><code>x = 5<br>if x &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("a")<br>elif x &gt; 3:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("b")<br>elif x &gt; 10:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("c")</code></summary>
+<div class="answer"><strong><code>a</code> only.</strong> An if/elif chain stops at the first True branch.</div></details>
+
+<details><summary>5. Trace this with <code>m = 50</code>:<br><code>if m &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;if m &gt; 100:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("big")<br>&nbsp;&nbsp;&nbsp;&nbsp;else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("small positive")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("not positive")</code></summary>
+<div class="answer"><strong><code>small positive</code>.</strong> 50 is positive, so we enter the outer if. Inside, 50 isn't greater than 100, so we go to the inner else. The outer else is skipped because the outer if was True.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 09 FUNCTIONS                                                  -->
+<!-- ============================================================ -->
+<section id="mod9">
+<h2><span class="module-num">MODULE 09</span>Functions, parameters, return &amp; while</h2>
+
+<p class="lead">A function is a named block of code you can run again and again, optionally passing it different inputs each time. Functions are the second-most-tested topic on this exam, after tracing.</p>
+
+<h3>Anatomy</h3>
+<pre><code><span class="kw">def</span> <span class="fn">greet</span>(name):          <span class="com"># <-- function header. "name" is the PARAMETER.</span>
+    message = <span class="str">"Hi, "</span> + name  <span class="com"># <-- function body (indented)</span>
+    <span class="kw">return</span> message          <span class="com"># <-- send a value BACK to whoever called it</span>
+
+result = <span class="fn">greet</span>(<span class="str">"Sara"</span>)       <span class="com"># <-- the call. "Sara" is the ARGUMENT.</span>
+<span class="fn">print</span>(result)               <span class="com"># <-- prints: Hi, Sara</span></code></pre>
+
+<table>
+<tr><th>Term</th><th>Where it lives</th><th>Means</th></tr>
+<tr><td>Parameter</td><td>in the <code>def</code> line</td><td>the local name the function uses for the value it receives</td></tr>
+<tr><td>Argument</td><td>in the call <code>greet(...)</code></td><td>the actual value being passed in</td></tr>
+<tr><td>Return value</td><td>after <code>return</code></td><td>the value the function sends back</td></tr>
+</table>
+
+<div class="callout mental">
+  <span class="label">★ Mental model</span>
+  <p>Calling a function is like handing a coupon to a vending machine. The coupon is your <em>argument</em>. Inside the machine, the coupon is given a slot name (the <em>parameter</em>). The machine does its work and either drops a snack out the bottom (the <em>return</em>) or just lights up an info display (a <code>print</code>).</p>
+</div>
+
+<h3><code>return</code> versus <code>print</code> — completely different jobs</h3>
+<p>This is the most-confused pair in the whole course. They look similar but they do opposite things.</p>
+
+<table>
+<tr><th></th><th><code>print</code></th><th><code>return</code></th></tr>
+<tr><td>Effect</td><td>shows text on the screen</td><td>hands a value back to the caller</td></tr>
+<tr><td>Visible to user?</td><td>Yes</td><td>No (unless caller prints it)</td></tr>
+<tr><td>Function continues after?</td><td>Yes</td><td>No — the function ends immediately</td></tr>
+<tr><td>If absent…</td><td>nothing prints</td><td>function returns <code>None</code> automatically</td></tr>
+</table>
+
+<pre><code><span class="kw">def</span> <span class="fn">add_p</span>(a, b):
+    <span class="fn">print</span>(a + b)
+    <span class="com"># no return — function gives back None</span>
+
+<span class="kw">def</span> <span class="fn">add_r</span>(a, b):
+    <span class="kw">return</span> a + b
+    <span class="com"># no print — nothing appears on screen unless we print the result</span>
+
+x = <span class="fn">add_p</span>(<span class="num">2</span>, <span class="num">3</span>)   <span class="com"># Screen shows: 5    ;  x is None</span>
+y = <span class="fn">add_r</span>(<span class="num">2</span>, <span class="num">3</span>)   <span class="com"># Screen shows nothing  ;  y is 5
+</span><span class="fn">print</span>(<span class="str">"x="</span>, x)
+<span class="fn">print</span>(<span class="str">"y="</span>, y)</code></pre>
+
+<p>Output:</p>
+<pre><code>5
+x= None
+y= 5</code></pre>
+
+<h3>Argument order matters</h3>
+<p>When you call a function with positional arguments (no name labels), Python matches them <strong>left to right</strong> with the parameters. Swapping the order swaps the meaning.</p>
+
+<pre><code><span class="kw">def</span> <span class="fn">divide</span>(top, bottom):
+    <span class="kw">return</span> top / bottom
+
+<span class="fn">divide</span>(<span class="num">10</span>, <span class="num">2</span>)    <span class="com"># top=10, bottom=2  → 5.0</span>
+<span class="fn">divide</span>(<span class="num">2</span>, <span class="num">10</span>)    <span class="com"># top=2,  bottom=10 → 0.2</span></code></pre>
+
+<div class="callout pitfall">
+  <span class="label">⚠ The variable-name swap trap</span>
+  <p>If you have variables named <code>a</code> and <code>b</code> at the top of your script and a function with parameters also named <code>a</code> and <code>b</code>, calling <code>my_func(b, a)</code> sends them in <strong>swapped order</strong> — the function's <code>a</code> receives your global <code>b</code>'s value, and vice versa. Look at the call, not the names.</p>
+</div>
+
+<h3>Local scope — what happens inside the function, stays inside</h3>
+<p>Variables created or changed inside a function are <strong>local</strong> to that function. They do not affect variables of the same name outside.</p>
+
+<pre><code>x = <span class="num">10</span>
+
+<span class="kw">def</span> <span class="fn">change</span>(x):
+    x = <span class="num">999</span>     <span class="com"># this x is local to the function</span>
+    <span class="fn">print</span>(<span class="str">"inside:"</span>, x)
+
+<span class="fn">change</span>(x)
+<span class="fn">print</span>(<span class="str">"outside:"</span>, x)
+<span class="com"># Output:
+# inside: 999
+# outside: 10     ← unchanged!</span></code></pre>
+
+<h3><code>while</code> loops</h3>
+<p>A <code>while</code> loop keeps running as long as a condition is True. You usually need to update something inside the loop, otherwise it runs forever.</p>
+
+<pre><code>n = <span class="num">3</span>
+<span class="kw">while</span> n &gt; <span class="num">0</span>:
+    <span class="fn">print</span>(n)
+    n = n - <span class="num">1</span>     <span class="com"># crucial — without this, infinite loop</span>
+<span class="fn">print</span>(<span class="str">"liftoff!"</span>)
+<span class="com"># Output:
+# 3
+# 2
+# 1
+# liftoff!</span></code></pre>
+
+<p>Walking through this trace style:</p>
+<table>
+<tr><th>Pass</th><th>n at top</th><th>condition n &gt; 0</th><th>print</th><th>n after n - 1</th></tr>
+<tr><td>1</td><td>3</td><td>True</td><td>3</td><td>2</td></tr>
+<tr><td>2</td><td>2</td><td>True</td><td>2</td><td>1</td></tr>
+<tr><td>3</td><td>1</td><td>True</td><td>1</td><td>0</td></tr>
+<tr><td>4</td><td>0</td><td>False — exit</td><td>—</td><td>—</td></tr>
+</table>
+
+<div class="callout pitfall">
+  <span class="label">⚠ Infinite loops</span>
+  <p>Forget to change the condition variable inside the loop and your program will run forever. Common cause of "my code froze." Always look at the condition first and ask "what makes this eventually become False?"</p>
+</div>
+
+<h3>Bloom's ladder — Functions</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">What keyword starts a function definition?</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Explain in one sentence what's different about <code>print</code> and <code>return</code>.</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">Given <code>def f(a, b): return a - b</code>, what is <code>f(10, 4)</code>? What is <code>f(4, 10)</code>?</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">A function only prints, never returns. What value does <code>x = my_func()</code> assign to <code>x</code>?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">Should a function that "computes the average of a list" print the result or return it? Why?</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write a function <code>countdown(n)</code> using a <code>while</code> loop that prints <code>n, n-1, ..., 1, "go!"</code>.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Functions &amp; while</p>
+
+<details><summary>1. In <code>def shout(word): return word.upper()</code>, what is the parameter? What is the argument when you call <code>shout("hello")</code>?</summary>
+<div class="answer"><strong>Parameter: <code>word</code></strong> (named in the def line). <strong>Argument: <code>"hello"</code></strong> (the value passed in the call).</div></details>
+
+<details><summary>2. What does this print?<br><code>def f(a, b):<br>&nbsp;&nbsp;&nbsp;&nbsp;return a + b<br>print(f(2, 3))</code></summary>
+<div class="answer"><strong><code>5</code>.</strong> The function returns 5, and <code>print</code> shows it.</div></details>
+
+<details><summary>3. What does this print?<br><code>def f(a, b):<br>&nbsp;&nbsp;&nbsp;&nbsp;a + b<br>print(f(2, 3))</code></summary>
+<div class="answer"><strong><code>None</code>.</strong> The function computes <code>a + b</code> but never returns it. With no <code>return</code>, the function returns <code>None</code> automatically.</div></details>
+
+<details><summary>4. What does this print?<br><code>def change(x):<br>&nbsp;&nbsp;&nbsp;&nbsp;x = 100<br>n = 5<br>change(n)<br>print(n)</code></summary>
+<div class="answer"><strong><code>5</code>.</strong> The <code>x</code> inside <code>change</code> is local. Reassigning it doesn't change <code>n</code> in the outer scope.</div></details>
+
+<details><summary>5. Trace this:<br><code>def loop(a, b):<br>&nbsp;&nbsp;&nbsp;&nbsp;while b &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = a + 1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b = b - 1<br>&nbsp;&nbsp;&nbsp;&nbsp;return a<br>print(loop(10, 3))</code></summary>
+<div class="answer"><strong><code>13</code>.</strong> Each loop pass adds 1 to <code>a</code> and subtracts 1 from <code>b</code>. After 3 passes, <code>a</code> went from 10 → 11 → 12 → 13, and <code>b</code> went from 3 → 2 → 1 → 0, ending the loop.</div></details>
+
+<details><summary>6. What's wrong with this?<br><code>n = 5<br>while n &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(n)</code></summary>
+<div class="answer"><strong>Infinite loop.</strong> <code>n</code> is never updated, so the condition is always True. Always change something inside the loop that affects the condition.</div></details>
+
+<details><summary>7. Variable scope check. Trace this and predict the output:<br><code>x = 7<br>def play(x):<br>&nbsp;&nbsp;&nbsp;&nbsp;x = x + 100<br>&nbsp;&nbsp;&nbsp;&nbsp;return x<br>result = play(x)<br>print(x, result)</code></summary>
+<div class="answer"><strong><code>7 107</code>.</strong> <code>play</code>'s local <code>x</code> becomes 107 and is returned. The outer <code>x</code> is untouched.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 10 DEBUGGING                                                  -->
+<!-- ============================================================ -->
+<section id="mod10">
+<h2><span class="module-num">MODULE 10</span>The debugging mindset</h2>
+
+<p class="lead">Debugging is the discipline of asking what the code <em>actually does</em>, not what you wished it did. The exam will hand you buggy code and ask you to predict its real output. Here's how to win that game.</p>
+
+<h3>The five-step debugging method</h3>
+<ol>
+  <li><strong>Read the code line by line.</strong> Don't skim. Resist the urge to "see what it's trying to do."</li>
+  <li><strong>Build a trace table</strong> for any variables that change.</li>
+  <li><strong>Check indentation carefully</strong> — what's inside which block?</li>
+  <li><strong>Look for the usual suspects</strong> (see list below).</li>
+  <li><strong>Predict the output line by line</strong>, then propose a fix.</li>
+</ol>
+
+<h3>The usual suspects — bugs you'll see again and again</h3>
+
+<table>
+<tr><th>Bug</th><th>What it looks like</th><th>What it does</th></tr>
+<tr><td>= instead of ==</td><td><code>if x = 5:</code></td><td><code>SyntaxError</code></td></tr>
+<tr><td>Wrong indentation</td><td><code>print</code> too far in or too far out</td><td>runs at the wrong time, or doesn't run</td></tr>
+<tr><td>Missing assignment</td><td><code>total + n</code> instead of <code>total = total + n</code></td><td>computes silently, total never grows</td></tr>
+<tr><td>Off-by-one</td><td><code>my_list[len(my_list)]</code></td><td><code>IndexError</code> — last index is <code>len - 1</code></td></tr>
+<tr><td>elif vs independent if</td><td>three independent <code>if</code>s when you wanted one branch</td><td>multiple branches run when you expected one</td></tr>
+<tr><td>Argument order swap</td><td><code>divide(b, a)</code> when you meant <code>divide(a, b)</code></td><td>silent wrong answer</td></tr>
+<tr><td>Confusing print and return</td><td>function prints but caller treats result as a value</td><td>caller gets <code>None</code></td></tr>
+<tr><td>Infinite loop</td><td>condition variable never changes inside the loop</td><td>program hangs</td></tr>
+<tr><td>Else attached to wrong if</td><td>misleading indentation in nested ifs</td><td>else runs in the wrong situation</td></tr>
+<tr><td>Type mismatch</td><td><code>"5" + 3</code> or comparing string to bool</td><td><code>TypeError</code> or wrong logic</td></tr>
+</table>
+
+<h3>Worked debugging walkthrough</h3>
+<p>Here's a buggy function. The author intended: "Add up all the numbers and return the total."</p>
+
+<pre><code><span class="kw">def</span> <span class="fn">add_all</span>(numbers):
+    total = <span class="num">0</span>
+    <span class="kw">for</span> n <span class="kw">in</span> numbers:
+        total + n          <span class="com"># BUG #1</span>
+    <span class="kw">return</span> Total            <span class="com"># BUG #2</span>
+
+<span class="fn">print</span>(<span class="fn">add_all</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]))</code></pre>
+
+<p>Walking through with the debugging method:</p>
+<ol>
+  <li><strong>Bug #1:</strong> <code>total + n</code> is an expression with no assignment. It computes a value and throws it away. <code>total</code> stays at 0 forever. (Module 4 trap.)</li>
+  <li><strong>Bug #2:</strong> <code>Total</code> with a capital T is a different name from <code>total</code>. Python is case-sensitive, so this raises <code>NameError: name 'Total' is not defined</code>.</li>
+</ol>
+
+<h4>The fix</h4>
+<pre><code><span class="kw">def</span> <span class="fn">add_all</span>(numbers):
+    total = <span class="num">0</span>
+    <span class="kw">for</span> n <span class="kw">in</span> numbers:
+        total = total + n   <span class="com"># now total actually grows</span>
+    <span class="kw">return</span> total           <span class="com"># lowercase, matches the variable name</span>
+
+<span class="fn">print</span>(<span class="fn">add_all</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]))   <span class="com"># → 6</span></code></pre>
+
+<div class="callout mental">
+  <span class="label">★ Mental model — be the computer</span>
+  <p>Imagine you are the world's most literal employee. Your job is to do <em>exactly</em> what each line says, in order, no creativity allowed. The bugs aren't yours to interpret — they're yours to <em>execute</em>. The right answer is whatever a literal-minded employee would produce, even if it's clearly not what the author wanted.</p>
+</div>
+
+<h3>Reading buggy nested code — a longer example</h3>
+
+<pre><code><span class="num">1</span>  <span class="kw">def</span> <span class="fn">describe_score</span>(scores):
+<span class="num">2</span>      <span class="kw">for</span> s <span class="kw">in</span> scores:
+<span class="num">3</span>          <span class="kw">if</span> s &gt;= <span class="num">90</span>:
+<span class="num">4</span>              <span class="fn">print</span>(<span class="str">"excellent"</span>)
+<span class="num">5</span>          <span class="kw">if</span> s &gt;= <span class="num">70</span>:
+<span class="num">6</span>              <span class="fn">print</span>(<span class="str">"passing"</span>)
+<span class="num">7</span>          <span class="kw">else</span>:
+<span class="num">8</span>              <span class="fn">print</span>(<span class="str">"failing"</span>)
+<span class="num">9</span>
+<span class="num">10</span> <span class="fn">describe_score</span>([<span class="num">95</span>, <span class="num">75</span>, <span class="num">40</span>])</code></pre>
+
+<p>The author wanted: each score gets exactly one label — "excellent", "passing", or "failing". Let's trace the actual behavior.</p>
+
+<table>
+<tr><th>s</th><th>line 3 (s ≥ 90)</th><th>line 4 prints</th><th>line 5 (s ≥ 70)</th><th>line 6/8 prints</th></tr>
+<tr><td>95</td><td>True</td><td>excellent</td><td>True</td><td>passing</td></tr>
+<tr><td>75</td><td>False</td><td>—</td><td>True</td><td>passing</td></tr>
+<tr><td>40</td><td>False</td><td>—</td><td>False</td><td>failing</td></tr>
+</table>
+
+<p>Actual output:</p>
+<pre><code>excellent
+passing
+passing
+failing</code></pre>
+
+<p><strong>Diagnosis:</strong> the second <code>if</code> on line 5 is independent of the first <code>if</code> on line 3, so both branches can fire for the same score. That's why 95 prints both "excellent" AND "passing". The author probably wanted line 5 to be an <code>elif</code> so only one branch runs per score.</p>
+
+<h4>The fix</h4>
+<pre><code><span class="kw">def</span> <span class="fn">describe_score</span>(scores):
+    <span class="kw">for</span> s <span class="kw">in</span> scores:
+        <span class="kw">if</span> s &gt;= <span class="num">90</span>:
+            <span class="fn">print</span>(<span class="str">"excellent"</span>)
+        <span class="kw">elif</span> s &gt;= <span class="num">70</span>:
+            <span class="fn">print</span>(<span class="str">"passing"</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="str">"failing"</span>)</code></pre>
+
+<div class="callout win">
+  <span class="label">✓ Pro move</span>
+  <p>When a debugging question asks "what is the actual output?", trust your trace table — even when the answer looks unreasonable. The answer is rewarding the <em>reader</em>, not the <em>author</em>. If your trace says "passing" prints twice, write "passing" twice.</p>
+</div>
+
+<h3>Bloom's ladder — Debugging</h3>
+<div class="bloom-grid">
+  <div class="bloom-card l1"><div class="bloom-level">Remember</div><p class="bloom-q">Name three of the "usual suspects" listed in the table above.</p></div>
+  <div class="bloom-card l2"><div class="bloom-level">Understand</div><p class="bloom-q">Why does an extra <code>if</code> instead of <code>elif</code> sometimes cause two messages to print?</p></div>
+  <div class="bloom-card l3"><div class="bloom-level">Apply</div><p class="bloom-q">For the <code>add_all</code> example, write the actual output before the fix.</p></div>
+  <div class="bloom-card l4"><div class="bloom-level">Analyze</div><p class="bloom-q">Compare what the author <em>wanted</em> from <code>describe_score</code> to what it actually produces. What single keyword change fixes it?</p></div>
+  <div class="bloom-card l5"><div class="bloom-level">Evaluate</div><p class="bloom-q">A function consistently returns <code>None</code>. List three independent reasons that could cause this.</p></div>
+  <div class="bloom-card l6"><div class="bloom-level">Create</div><p class="bloom-q">Write a small buggy function for a friend, where the bug is "uses <code>=</code> in an if statement." Then write the corrected version.</p></div>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Instant Quiz · Debugging</p>
+
+<details><summary>1. What's wrong here, and what does it do?<br><code>def double(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;n * 2</code></summary>
+<div class="answer">No <code>return</code>. The function computes <code>n * 2</code> and throws it away. <code>x = double(5)</code> sets <code>x</code> to <code>None</code>. Fix: add <code>return</code> in front.</div></details>
+
+<details><summary>2. What error does this raise?<br><code>x = 10<br>if x = 10:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("yes")</code></summary>
+<div class="answer"><strong><code>SyntaxError</code>.</strong> A single <code>=</code> is assignment and isn't allowed in an <code>if</code> condition. Use <code>==</code>.</div></details>
+
+<details><summary>3. What does this print, and is it what the author wanted?<br><code>n = 4<br>if n &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("positive")<br>if n &gt; 2:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("&gt; 2")<br>if n &gt; 100:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("huge")</code><br>Author wanted: ONE label per number.</summary>
+<div class="answer">Actual output: <code>positive</code> then <code>&gt; 2</code>. Two labels printed because each <code>if</code> is independent. Fix: chain them with <code>elif</code>.</div></details>
+
+<details><summary>4. Spot the bug:<br><code>def average(nums):<br>&nbsp;&nbsp;&nbsp;&nbsp;total = 0<br>&nbsp;&nbsp;&nbsp;&nbsp;for n in nums:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total = total + n<br>&nbsp;&nbsp;&nbsp;&nbsp;return total / len(num)</code></summary>
+<div class="answer"><strong><code>NameError</code>.</strong> The parameter is <code>nums</code> (with the s), but the last line uses <code>num</code>. Python is case-sensitive AND letter-sensitive. Fix: use <code>nums</code> consistently.</div></details>
+
+<details><summary>5. Why does this loop run forever?<br><code>i = 1<br>while i &lt;= 5:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br>i = i + 1</code></summary>
+<div class="answer">The <code>i = i + 1</code> line is <strong>not indented</strong> — it's outside the loop. So inside the loop, <code>i</code> is never updated, and the condition <code>i &lt;= 5</code> is always True. Fix: indent <code>i = i + 1</code> to be inside the loop.</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 11 PRACTICE EXAM                                              -->
+<!-- ============================================================ -->
+<section id="practice">
+<h2><span class="module-num">MODULE 11</span>Full practice exam · all-new questions</h2>
+
+<p class="lead">Twelve fresh questions in the style of your final. Try each one without peeking, then check the answer. If you get one wrong, return to that module and re-read.</p>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 1 — Lists</p>
+<p>Consider:</p>
+<pre><code>data = [<span class="str">"Math"</span>, <span class="num">101</span>, <span class="num">3.5</span>, <span class="kw">False</span>, [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>]]</code></pre>
+<p><strong>(a)</strong> What does <code>len(data)</code> return?<br>
+<strong>(b)</strong> What is the type of each item, in order?<br>
+<strong>(c)</strong> What is <code>data[-1]</code>?<br>
+<strong>(d)</strong> What is <code>len(data[-1])</code>?</p>
+
+<details><summary>See answers</summary>
+<div class="answer">
+<strong>(a)</strong> <code>5</code> — five items in the outer list.<br>
+<strong>(b)</strong> <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>list</code>.<br>
+<strong>(c)</strong> <code>["a", "b", "c"]</code> — the last item, which is itself a list.<br>
+<strong>(d)</strong> <code>3</code> — that inner list has three items.
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 2 — Types</p>
+<p>For each line, write what it evaluates to and what type the result is:</p>
+<pre><code><span class="num">2</span> + <span class="num">3</span>
+<span class="str">"2"</span> + <span class="str">"3"</span>
+<span class="num">2</span> == <span class="str">"2"</span>
+<span class="kw">True</span> == <span class="num">1</span>
+<span class="fn">type</span>(<span class="num">7.0</span>)</code></pre>
+
+<details><summary>See answers</summary>
+<div class="answer">
+<code>2 + 3</code> → <code>5</code> (int)<br>
+<code>"2" + "3"</code> → <code>"23"</code> (str)<br>
+<code>2 == "2"</code> → <code>False</code> (bool) — different types are never equal<br>
+<code>True == 1</code> → <code>True</code> (bool) — booleans are a subtype of int in Python; True equals 1<br>
+<code>type(7.0)</code> → <code>&lt;class 'float'&gt;</code>
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 3 — Sets</p>
+<p>What is the output?</p>
+<pre><code>letters = [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"a"</span>, <span class="str">"c"</span>, <span class="str">"b"</span>, <span class="str">"a"</span>]
+<span class="fn">print</span>(<span class="fn">len</span>(letters))
+<span class="fn">print</span>(<span class="fn">len</span>(<span class="fn">set</span>(letters)))</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+<pre style="margin-top:0.4rem;">6
+3</pre>
+The list has 6 items; the set has 3 unique values (a, b, c).
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 4 — Tracing</p>
+<p>Lines are executed in order. Fill in the value of each expression after each line:</p>
+<pre><code>p = <span class="num">4</span>
+q = <span class="num">10</span>
+r = p + q
+p + <span class="num">2</span>          ___________________
+q = q + p
+r              ___________________
+p + q          ___________________
+q = q - r
+q              ___________________</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+<table style="margin-top:0.4rem;">
+<tr><th>Line</th><th>p</th><th>q</th><th>r</th><th>Expression value</th></tr>
+<tr><td>p = 4</td><td>4</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>q = 10</td><td>4</td><td>10</td><td>—</td><td>—</td></tr>
+<tr><td>r = p + q</td><td>4</td><td>10</td><td>14</td><td>—</td></tr>
+<tr><td>p + 2</td><td>4</td><td>10</td><td>14</td><td><strong>6</strong></td></tr>
+<tr><td>q = q + p</td><td>4</td><td>14</td><td>14</td><td>—</td></tr>
+<tr><td>r</td><td>4</td><td>14</td><td>14</td><td><strong>14</strong></td></tr>
+<tr><td>p + q</td><td>4</td><td>14</td><td>14</td><td><strong>18</strong></td></tr>
+<tr><td>q = q - r</td><td>4</td><td>0</td><td>14</td><td>—</td></tr>
+<tr><td>q</td><td>4</td><td>0</td><td>14</td><td><strong>0</strong></td></tr>
+</table>
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 5 — If/Else</p>
+<p>What does this print?</p>
+<pre><code>a = <span class="num">15</span>
+b = <span class="num">15</span>
+<span class="kw">if</span> a &gt; b:
+    <span class="fn">print</span>(a + b)
+<span class="kw">elif</span> a == b:
+    <span class="fn">print</span>(a * <span class="num">2</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(b - a)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer"><strong><code>30</code>.</strong> <code>a &gt; b</code> is False (they're equal). <code>a == b</code> is True, so <code>a * 2</code> = 30 prints. The else is skipped.</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 6 — Boolean operators</p>
+<p>Given <code>x = 5, y = 10, z = 5</code>, what does this print?</p>
+<pre><code><span class="kw">if</span> x == z <span class="kw">and</span> y &gt; x:
+    <span class="fn">print</span>(<span class="str">"alpha"</span>)
+<span class="kw">elif</span> x == y <span class="kw">or</span> z &gt; <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"beta"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"gamma"</span>)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer"><strong><code>alpha</code>.</strong> <code>x == z</code> is True (both 5) AND <code>y &gt; x</code> is True (10 &gt; 5). The first branch matches, so it prints and the rest is skipped.</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 7 — Nested loops</p>
+<p>What is the output?</p>
+<pre><code><span class="kw">for</span> a <span class="kw">in</span> [<span class="str">"x"</span>, <span class="str">"y"</span>]:
+    <span class="kw">for</span> b <span class="kw">in</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]:
+        <span class="fn">print</span>(a, b)
+<span class="fn">print</span>(<span class="str">"end"</span>, a, b)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+<pre style="margin-top:0.4rem;">x 1
+x 2
+x 3
+y 1
+y 2
+y 3
+end y 3</pre>
+The outer loop runs twice. For each, the inner loop runs three times. After both loops finish, <code>a</code> still holds "y" and <code>b</code> still holds 3.
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 8 — Nested if</p>
+<p>What is the output when <code>num = 50</code>?</p>
+<pre><code>num = <span class="num">50</span>
+<span class="kw">if</span> num &gt; <span class="num">10</span>:
+    <span class="fn">print</span>(<span class="str">"alpha"</span>)
+    <span class="kw">if</span> num &lt; <span class="num">100</span>:
+        <span class="fn">print</span>(<span class="str">"bravo"</span>)
+    <span class="kw">elif</span> num &gt; <span class="num">200</span>:
+        <span class="fn">print</span>(<span class="str">"charlie"</span>)
+<span class="kw">elif</span> num &lt; <span class="num">5</span>:
+    <span class="fn">print</span>(<span class="str">"delta"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"echo"</span>)
+<span class="fn">print</span>(<span class="str">"foxtrot"</span>)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+<pre style="margin-top:0.4rem;">alpha
+bravo
+foxtrot</pre>
+Outer if (<code>num &gt; 10</code>) is True → "alpha". Inner if (<code>num &lt; 100</code>) is True → "bravo". The inner elif and outer elif/else are all skipped. "foxtrot" runs unconditionally.
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 9 — Functions</p>
+<p>What is the output?</p>
+<pre><code><span class="kw">def</span> <span class="fn">build</span>(a, b):
+    <span class="kw">while</span> a &lt; b:
+        a = a + <span class="num">2</span>
+        <span class="fn">print</span>(<span class="str">"step"</span>, a)
+    <span class="kw">return</span> a
+
+result = <span class="fn">build</span>(<span class="num">1</span>, <span class="num">7</span>)
+<span class="fn">print</span>(<span class="str">"result:"</span>, result)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+Trace:<br>
+Start: <code>a = 1, b = 7</code>.<br>
+Pass 1: <code>1 &lt; 7</code> True. <code>a = 3</code>. Print "step 3".<br>
+Pass 2: <code>3 &lt; 7</code> True. <code>a = 5</code>. Print "step 5".<br>
+Pass 3: <code>5 &lt; 7</code> True. <code>a = 7</code>. Print "step 7".<br>
+Pass 4: <code>7 &lt; 7</code> False. Exit. Return 7.<br>
+<pre style="margin-top:0.4rem;">step 3
+step 5
+step 7
+result: 7</pre>
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 10 — Function scope &amp; argument order</p>
+<p>What does this print?</p>
+<pre><code><span class="kw">def</span> <span class="fn">swap_bug</span>(a, b):
+    a = a + <span class="num">100</span>
+    b = b - <span class="num">100</span>
+    <span class="fn">print</span>(<span class="str">"inside:"</span>, a, b)
+    <span class="kw">return</span> a
+
+a = <span class="num">10</span>
+b = <span class="num">20</span>
+out = <span class="fn">swap_bug</span>(b, a)
+<span class="fn">print</span>(<span class="str">"outside:"</span>, a, b, out)</code></pre>
+
+<details><summary>See answer</summary>
+<div class="answer">
+The call is <code>swap_bug(b, a)</code>, so the function's <code>a</code> receives the global <code>b</code>'s value (20), and the function's <code>b</code> receives the global <code>a</code>'s value (10).<br>
+Inside: <code>a = 20 + 100 = 120</code>, <code>b = 10 - 100 = -90</code>. Prints <code>inside: 120 -90</code>.<br>
+Returns <code>120</code>, stored in <code>out</code>.<br>
+Outer <code>a</code> and <code>b</code> were never modified by the function.<br>
+<pre style="margin-top:0.4rem;">inside: 120 -90
+outside: 10 20 120</pre>
+</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 11 — Multiple choice</p>
+<p>What is printed?</p>
+<pre><code>n = <span class="num">8</span>
+<span class="kw">if</span> n &lt; <span class="num">5</span>:
+    <span class="fn">print</span>(n + <span class="num">10</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(n * <span class="num">3</span>)</code></pre>
+<p><strong>A.</strong> 8 &nbsp; <strong>B.</strong> 18 &nbsp; <strong>C.</strong> 24 &nbsp; <strong>D.</strong> 38</p>
+
+<details><summary>See answer</summary>
+<div class="answer"><strong>C — 24.</strong> 8 is not less than 5, so the else runs: <code>8 * 3 = 24</code>.</div></details>
+</div>
+
+<div class="quiz">
+<p class="quiz-title">Practice Question 12 — Debugging (the big one)</p>
+<p>The author intended this function to print "expensive" for prices over $50, "moderate" for prices over $20, and "cheap" for everything else, then print a header at the start.</p>
+
+<pre><code><span class="num">1</span>  <span class="kw">def</span> <span class="fn">label_prices</span>(prices):
+<span class="num">2</span>      <span class="fn">print</span>(<span class="str">"--- prices ---"</span>)
+<span class="num">3</span>      <span class="kw">for</span> p <span class="kw">in</span> prices:
+<span class="num">4</span>          <span class="kw">if</span> p &gt; <span class="num">20</span>:
+<span class="num">5</span>              <span class="fn">print</span>(<span class="str">"moderate"</span>)
+<span class="num">6</span>          <span class="kw">if</span> p &gt; <span class="num">50</span>:
+<span class="num">7</span>              <span class="fn">print</span>(<span class="str">"expensive"</span>)
+<span class="num">8</span>          <span class="kw">else</span>:
+<span class="num">9</span>              <span class="fn">print</span>(<span class="str">"cheap"</span>)
+<span class="num">10</span>
+<span class="num">11</span> items = [<span class="num">75</span>, <span class="num">30</span>, <span class="num">10</span>]
+<span class="num">12</span> <span class="fn">label_prices</span>(items)
+<span class="num">13</span> <span class="fn">print</span>(<span class="str">"done"</span>)</code></pre>
+
+<p><strong>(a)</strong> What line contains the function call?<br>
+<strong>(b)</strong> What line contains the function definition header?<br>
+<strong>(c)</strong> What is the name of the argument?<br>
+<strong>(d)</strong> What is the name of the parameter?<br>
+<strong>(e)</strong> What is the value of <code>p</code> after the first iteration of the loop?<br>
+<strong>(f)</strong> What is the value of <code>p</code> after the last iteration of the loop?<br>
+<strong>(g)</strong> What value does this function return?<br>
+<strong>(h)</strong> What is the actual output?<br>
+<strong>(i)</strong> Rewrite the function with the bugs removed.</p>
+
+<details><summary>See answers</summary>
+<div class="answer">
+<strong>(a)</strong> Line 12.<br>
+<strong>(b)</strong> Line 1.<br>
+<strong>(c)</strong> <code>items</code>.<br>
+<strong>(d)</strong> <code>prices</code>.<br>
+<strong>(e)</strong> <code>75</code>.<br>
+<strong>(f)</strong> <code>10</code>.<br>
+<strong>(g)</strong> <code>None</code> — there's no <code>return</code> statement.<br>
+<strong>(h)</strong> Trace each price:
+<table style="margin-top:0.4rem;">
+<tr><th>p</th><th>line 4 (>20)</th><th>line 6 (>50)</th><th>line 8 else</th><th>printed</th></tr>
+<tr><td>75</td><td>True → "moderate"</td><td>True → "expensive"</td><td>skipped</td><td>moderate, expensive</td></tr>
+<tr><td>30</td><td>True → "moderate"</td><td>False</td><td>runs → "cheap"</td><td>moderate, cheap</td></tr>
+<tr><td>10</td><td>False</td><td>False</td><td>runs → "cheap"</td><td>cheap</td></tr>
+</table>
+Actual output:
+<pre style="margin-top:0.4rem;">--- prices ---
+moderate
+expensive
+moderate
+cheap
+cheap
+done</pre>
+The bugs: line 6 is an independent <code>if</code>, not <code>elif</code>, so a price over 20 prints "moderate" PLUS triggers a separate cheap/expensive decision. The else on line 8 attaches only to the line-6 if, so prices ≤ 50 always print "cheap" — even reasonable prices like $30.<br>
+<br>
+<strong>(i) Fix:</strong>
+<pre style="margin-top:0.4rem;"><code>def label_prices(prices):
+    print("--- prices ---")
+    for p in prices:
+        if p &gt; 50:
+            print("expensive")
+        elif p &gt; 20:
+            print("moderate")
+        else:
+            print("cheap")</code></pre>
+Note the order: check the most restrictive condition (<code>&gt; 50</code>) first. Use <code>elif</code> so only one branch runs per price.
+</div></details>
+</div>
+
+</section>
+
+<div class="ornament">❦ ❦ ❦</div>
+
+<!-- ============================================================ -->
+<!-- 12 CHEAT SHEET                                                -->
+<!-- ============================================================ -->
+<section id="cheat">
+<h2><span class="module-num">MODULE 12</span>One-page cheat sheet</h2>
+
+<p class="lead">Print this. Read it the morning of the exam. Then close it and trust your training.</p>
+
+<h3>Lists</h3>
+<ul>
+  <li>Made with <code>[ ]</code>, items in any order, can mix types, can nest.</li>
+  <li><code>len(my_list)</code> = number of items.</li>
+  <li>Index starts at <code>0</code>. Last item is at <code>len - 1</code>, or use <code>-1</code>.</li>
+  <li>Out-of-range index → <code>IndexError</code>.</li>
+</ul>
+
+<h3>Types</h3>
+<ul>
+  <li><code>int</code> (no dot), <code>float</code> (has dot), <code>str</code> (has quotes), <code>bool</code> (only <code>True</code>/<code>False</code>), <code>list</code> (has <code>[ ]</code>).</li>
+  <li><code>type(value)</code> reveals the type.</li>
+  <li><code>True</code> ≠ <code>"True"</code>. <code>5</code> ≠ <code>"5"</code>. Quotes change everything.</li>
+  <li><code>"a" + "b"</code> = <code>"ab"</code> (glue). <code>1 + 1</code> = <code>2</code> (math).</li>
+</ul>
+
+<h3>Sets</h3>
+<ul>
+  <li>Made with <code>{ }</code>, no duplicates, no guaranteed order.</li>
+  <li><code>set(my_list)</code> deduplicates. <code>len(set(...))</code> counts unique items.</li>
+</ul>
+
+<h3>Tracing</h3>
+<ul>
+  <li>Line with <code>=</code> outside → updates a variable.</li>
+  <li>Line without <code>=</code> → computes a value and discards it.</li>
+  <li><code>x = x + 1</code> → evaluate the right side first using current <code>x</code>, then store.</li>
+  <li>Use a trace table: one column per variable, one row per line.</li>
+</ul>
+
+<h3>If / Else / Elif</h3>
+<ul>
+  <li>Indentation defines the block. Colons end the if, elif, and else lines.</li>
+  <li>An if/elif/else chain runs <strong>at most one</strong> branch — the first true one.</li>
+  <li>Several independent <code>if</code>s can each run separately.</li>
+  <li>Use <code>==</code> (compare), not <code>=</code> (assign), inside conditions.</li>
+</ul>
+
+<h3>Boolean operators</h3>
+<ul>
+  <li><code>and</code> — both must be True.</li>
+  <li><code>or</code> — at least one True.</li>
+  <li><code>not</code> — flips True/False.</li>
+  <li>Always rewrite <code>x == 1 or 2</code> as <code>x == 1 or x == 2</code>.</li>
+</ul>
+
+<h3>Loops</h3>
+<ul>
+  <li><code>for var in collection:</code> — runs once per item.</li>
+  <li>Nested loops: inner runs in full for every outer step. Total = m × n.</li>
+  <li>Loop variable still exists after the loop, holding the last value.</li>
+  <li><code>range(n)</code> gives 0 to n−1.</li>
+  <li><code>while cond:</code> — must change something inside or run forever.</li>
+</ul>
+
+<h3>Functions</h3>
+<ul>
+  <li><code>def name(parameters):</code> — define. <code>name(arguments)</code> — call.</li>
+  <li>Parameter = name in the def line. Argument = value in the call.</li>
+  <li>Order of arguments matters.</li>
+  <li><code>return</code> sends a value back; <code>print</code> only shows.</li>
+  <li>No <code>return</code> → function returns <code>None</code>.</li>
+  <li>Variables inside a function are local; they don't change outer variables of the same name.</li>
+</ul>
+
+<h3>Debugging mindset</h3>
+<ul>
+  <li>Be the computer: literal, line by line, no assumptions.</li>
+  <li>Build trace tables for variables.</li>
+  <li>Suspect: <code>=</code> vs <code>==</code>, indent levels, missing assignment, missing return, independent ifs vs elif chains, swapped argument order, type mismatch.</li>
+</ul>
+
+<h3>Exam-day strategy</h3>
+<ol>
+  <li><strong>Read the question all the way through</strong> before writing.</li>
+  <li>If it's a tracing question, <strong>draw the trace table immediately</strong>.</li>
+  <li>If it's a function question, <strong>circle the parameters and the call's arguments</strong> and check the order.</li>
+  <li>If it's a debugging question, ignore intent and trace what the code <em>actually</em> does.</li>
+  <li>Watch the <strong>indentation</strong> like a hawk on every <code>print</code> after a loop or if.</li>
+  <li>If stuck, <strong>skip and come back</strong>. Easy points first.</li>
+</ol>
+
+<div class="callout win">
+  <span class="label">✓ Final encouragement</span>
+  <p>You don't need to be brilliant to do well on this exam. You need to be patient, careful, and honest with what the code actually says. Trace by hand. Trust your trace table. Move on. You've got this.</p>
+</div>
+
+</section>
+
+<footer>
+  CIS 108 · Final Exam Review · prepared with care · trace, don't memorize
+</footer>
+
+</main>
+</div>
+</body>
+</html>
