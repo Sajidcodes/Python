@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <title>Learn Python in Your Browser</title>
+    <!-- Load Pyodide from the official CDN -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v314.0.4/full/pyodide.js"></script>
+</head>
+<body>
+    <h1>Python Lesson 1: Basic Math</h1>
+    <p>Type your Python code below and click Run to test it instantly:</p>
+    
+    <!-- Code Input Box -->
+    <textarea id="code" rows="4" style="width: 100%;">print(2 + 2)</textarea><br>
+    <button onclick="runCode()">Run Code</button>
+    
+    <h3>Output:</h3>
+    <pre id="output" style="background: #f4f4f4; padding: 10px;"></pre>
+
+    <script>
+        let pyodideReady = false;
+        let pyodide = null;
+
+        // Initialize Pyodide when the page loads
+        async function loadEnvironment() {
+            document.getElementById("output").innerText = "Loading Python environment...";
+            pyodide = await loadPyodide();
+            pyodideReady = true;
+            document.getElementById("output").innerText = "Python ready! Type code above.";
+        }
+        loadEnvironment();
+
+        // Execute user code safely in the browser
+        async function runCode() {
+            if (!pyodideReady) {
+                alert("Please wait for Python to finish loading.");
+                return;
+            }
+            
+            const code = document.getElementById("code").value;
+            const outputDiv = document.getElementById("output");
+            
+            try {
+                // Redirect standard output to capture print statements
+                pyodide.runPython(`
+                    import sys
+                    import io
+                    sys.stdout = io.StringIO()
+                `);
+                
+                // Run the user's code
+                pyodide.runPython(code);
+                
+                // Retrieve the printed output
+                let stdout = pyodide.runPython("sys.stdout.getvalue()");
+                outputDiv.innerText = stdout;
+            } catch (error) {
+                outputDiv.innerText = error;
+            }
+        }
+    </script>
+</body>
+</html>
